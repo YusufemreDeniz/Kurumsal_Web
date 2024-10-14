@@ -1,5 +1,5 @@
-﻿@model IEnumerable< Kurumsal_Web11.Models.Kategori>
-@{
+﻿@model IEnumerable<Kurumsal_Web11.Models.Model.Kategori>
+{
     ViewBag.Title = "Admin Ana Sayfa";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
@@ -12,10 +12,10 @@
 
     <div class="pagetitle">
         <h1>Dashboard</h1>
-        @foreach (var item in Model)
-        {
-            <li>@item.KategoriAd </li>
-        }
+    @foreach (var item in Model)
+    {
+        <li>@item.KategoriAd - @item.Aciklama</li>
+    }
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
