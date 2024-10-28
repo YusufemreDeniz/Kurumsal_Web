@@ -726,6 +726,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\Kimlik\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Content\AdminLayout\assets\vendor\chart.js\controllers\controller.bar.d.ts" />

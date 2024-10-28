@@ -7,7 +7,7 @@
 
 <h2>Düzenle</h2>
 
-@using (Html.BeginForm())//html helperlardan yararlanmak
+@using (Html.BeginForm("Edit", "Kimlik", FormMethod.Post, new {enctype="multipart/form-data"}))//html helperlardan yararlanmak
 {
     @Html.AntiForgeryToken()//URL gönderirken alınan güvenlik önlemi
     
