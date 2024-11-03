@@ -30,6 +30,7 @@ namespace Kurumsal_Web11.Controllers
         // POST: Kimlik/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]//edit sayfasından gönderilen güvenlik önlemini karşılayan 
+        [ValidateInput(false)]
         public ActionResult Edit(int id, Kimlik kimlik,HttpPostedFileBase LogoURL)
         {
             if (ModelState.IsValid)

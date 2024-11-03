@@ -14,8 +14,7 @@ namespace Kurumsal_Web11.Controllers
         // GET: Admin
         public ActionResult Index()
         {
-            var sorgu= db.Kategori.ToList();
-            return View(sorgu);
+            return View();
         }
     }
 }
