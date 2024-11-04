@@ -1,0 +1,128 @@
+﻿@model Kurumsal_Web11.Models.Model.Hakkimizda
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .update-button {
+        padding: 12px 24px;
+        font-size: 18px;
+        transition: all 0.3s ease;
+        display: inline-block;
+        text-decoration: none;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        margin-top: 20px;
+    }
+
+        .update-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .update-button i {
+            margin-right: 8px;
+        }
+
+    .back-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        margin-top: 20px;
+        display: inline-block;
+        text-decoration: none;
+        color: #fff;
+        background-color: #6c757d;
+        border: none;
+        border-radius: 5px;
+    }
+
+        .back-button:hover {
+            background-color: #5a6268;
+            transform: translateX(-5px);
+            box-shadow: -2px 2px 5px rgba(0,0,0,0.1);
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .back-button i {
+            margin-right: 8px;
+        }
+
+    .description-container {
+        background-color: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 20px;
+        margin-top: 30px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .description-title {
+        color: #343a40;
+        font-size: 24px;
+        margin-bottom: 15px;
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 10px;
+    }
+
+    .description-content {
+        color: #495057;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+        .description-content p {
+            margin-bottom: 10px;
+        }
+</style>
+
+
+<main id="main" class="main">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Hakkımızda</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.HakkimizdaId)
+
+            <div class="description-container">
+                <h3 class="description-title">Açıklama</h3>
+                <div class="description-content">
+                    <textarea name="Aciklama" id="editor" class="form-control">@Model.Aciklama</textarea>
+                    @Html.ValidationMessageFor(model => model.Aciklama, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" class="btn btn-primary btn-lg update-button">
+                        <i class="fas fa-sync-alt"></i> Güncelle
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        <a href="@Url.Action("Index")" class="btn btn-secondary btn-lg back-button">
+            <i class="fas fa-arrow-left"></i> Geri Dön
+        </a>
+    </div>
+
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('editor');
+    </script>
+
+</main>

@@ -15,7 +15,7 @@ namespace Kurumsal_Web11.Models.Model
         [Key] public int HakkimizdaId { get; set; }
         [Required]
         [DisplayName("Hakkımızda Açıklama")]
-        public int Aciklama { get; set; }
+        public string Aciklama { get; set; }
 
     }
 }

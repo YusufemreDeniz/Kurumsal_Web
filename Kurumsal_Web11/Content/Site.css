@@ -13,4 +13,10 @@
 input, select, textarea {
     max-width: 280px;
 }
+/* Diğer CSS kodlarınız */
+
+#sidebar.sidebar {
+    position: sticky;
+    top: 80px;
+}
 

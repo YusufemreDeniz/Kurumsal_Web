@@ -999,10 +999,16 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\DenemeController.cs" />
+    <Compile Include="Controllers\HakkimizdaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KimlikController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202411041108397_UpdateDatabase.cs" />
+    <Compile Include="Migrations\202411041108397_UpdateDatabase.designer.cs">
+      <DependentUpon>202411041108397_UpdateDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DataContext\KurumsalDBContext.cs" />
@@ -1044,6 +1050,9 @@
     <Content Include="Scripts\jquery-3.7.1.min.map" />
     <Content Include="Views\Kimlik\Index.cshtml" />
     <Content Include="Views\Kimlik\Edit.cshtml" />
+    <Content Include="Views\Hakkimizda\Index.cshtml" />
+    <Content Include="Views\Hakkimizda\Edit.cshtml" />
+    <Content Include="Views\Deneme\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1151,6 +1160,11 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202411041108397_UpdateDatabase.resx">
+      <DependentUpon>202411041108397_UpdateDatabase.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

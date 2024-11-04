@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creative - Kurumsal Web Admin</title>
-    
-    <link href="~/Content/Site.css" rel="stylesheet"  />
+
+    <link href="~/Content/Site.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
 
@@ -41,14 +41,22 @@
     ======================================================== -->
     <script src="~/Content/ckeditor/ckeditor.js"></script>
     <link href="~/Content/ckeditor/contents.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 </head>
 
 
 <body>
-    
+
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
+        <style>
+
+            body {
+                margin: 0;
+                padding: 0;
+            }
+        </style>
 
         <div class="d-flex align-items-center justify-content-between">
             <a href="/Admin/Index" class="logo d-flex align-items-center">
@@ -288,6 +296,26 @@
             </li><!-- End Dashboard Nav -->
 
             <li class="nav-item">
+                <a class="nav-link " href="/Kimlik/Index">
+                    <i class="bi-alphabet"></i>
+                    <span>Site Kimlik</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="/Deneme/Index">
+                    <i class="bi-alphabet"></i>
+                    <span>Deneme</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link " href="/Hakkimizda/Index">
+                    <i class="bi-h-square "></i>
+                    <span>Hakkımızda</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-menu-button-wide"></i><span>Components</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
@@ -514,14 +542,12 @@
 
 
     <section id="main-content">
-            <section class="wrapper">
-                @RenderBody()
-            </section>
+        <section class="wrapper">
+            @RenderBody()
+        </section>
     </section>
-    
-    
 
-    
+
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
         <div class="copyright">
@@ -550,6 +576,8 @@
 
     <!-- Template Main JS File -->
     <script src="~/Content/AdminLayout/assets/js/main.js"></script>
+
+
 
 </body>
 
