@@ -1,0 +1,196 @@
+﻿@model Kurumsal_Web11.Models.Model.Iletisim
+
+@{
+    ViewBag.Title = "İletişim Bilgisi Sil";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .delete-container {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .delete-header {
+        background-color: #dc3545;
+        color: white;
+        padding: 15px;
+        border-radius: 5px 5px 0 0;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+        .delete-header h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+    .delete-confirmation {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #6c757d;
+    }
+
+    .detail-list {
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .detail-item {
+        display: flex;
+        border-bottom: 1px solid #dee2e6;
+        padding: 12px;
+        background-color: #f8f9fa;
+    }
+
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+    .detail-label {
+        flex: 0 0 30%;
+        font-weight: bold;
+        color: #495057;
+    }
+
+    .detail-value {
+        flex: 1;
+        color: #212529;
+    }
+
+    .action-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .btn-delete {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-delete:hover {
+            background-color: #bd2130;
+        }
+
+    .btn-back {
+        background-color: #6c757d;
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-back:hover {
+            background-color: #545b62;
+            color: white;
+            text-decoration: none;
+        }
+
+    .social-links {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin-top: 15px;
+    }
+
+    .social-link {
+        color: #007bff;
+        font-size: 24px;
+        transition: color 0.3s ease;
+    }
+
+        .social-link:hover {
+            color: #0056b3;
+        }
+</style>
+
+<main id="main" class="main">
+    <div class="delete-container">
+        <div class="delete-header">
+            <h2>
+                <i class="fas fa-trash-alt"></i> İletişim Bilgisi Silme
+            </h2>
+        </div>
+
+        <div class="delete-confirmation">
+            <h3>Bu kaydı silmek istediğinizden emin misiniz?</h3>
+            <p>Bu işlem geri alınamaz.</p>
+        </div>
+
+        <div class="detail-list">
+            <div class="detail-item">
+                <div class="detail-label">Adres</div>
+                <div class="detail-value">@Model.Adres</div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-label">Telefon</div>
+                <div class="detail-value">@Model.Telefon</div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-label">Fax</div>
+                <div class="detail-value">@Model.Fax</div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-label">Whatsapp</div>
+                <div class="detail-value">@Model.Whatsapp</div>
+            </div>
+        </div>
+
+        <div class="social-links">
+            @if (!string.IsNullOrEmpty(Model.Facebook))
+            {
+                <a href="@Model.Facebook" target="_blank" class="social-link">
+                    <i class="fab fa-facebook"></i>
+                </a>
+            }
+            @if (!string.IsNullOrEmpty(Model.Twitter))
+            {
+                <a href="@Model.Twitter" target="_blank" class="social-link">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            }
+            @if (!string.IsNullOrEmpty(Model.Instagram))
+            {
+                <a href="@Model.Instagram" target="_blank" class="social-link">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            }
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="action-buttons">
+                <button type="submit" class="btn-delete">
+                    <i class="fas fa-check"></i> Sil
+                </button>
+                @Html.ActionLink("Geri Dön", "Index", null, new { @class = "btn-back" })
+            </div>
+        }
+    </div>
+</main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Silme işlemi için onay kontrolü
+        document.querySelector('.btn-delete').addEventListener('click', function (e) {
+            if (!confirm('Bu kaydı silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.')) {
+                e.preventDefault();
+            }
+        });
+    });
+</script>

@@ -1,0 +1,172 @@
+﻿@model IEnumerable<Kurumsal_Web11.Models.Model.Iletisim>
+
+@{
+    ViewBag.Title = "İletişim Bilgileri";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .contact-management {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    .contact-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .page-title {
+        color: #343a40;
+        margin: 0;
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+    .create-btn {
+        background-color: #28a745;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+        .create-btn:hover {
+            background-color: #218838;
+        }
+
+    .contact-table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+        .contact-table th {
+            background-color: #007bff;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .contact-table tr {
+            border-bottom: 1px solid #dee2e6;
+            transition: background-color 0.3s ease;
+        }
+
+            .contact-table tr:hover {
+                background-color: #f1f4f8;
+            }
+
+        .contact-table td {
+            padding: 12px;
+        }
+
+    .action-links {
+        display: flex;
+        gap: 10px;
+    }
+
+    .action-link {
+        text-decoration: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    .edit-link {
+        background-color: #ffc107;
+        color: white;
+    }
+
+    .details-link {
+        background-color: #17a2b8;
+        color: white;
+    }
+
+    .delete-link {
+        background-color: #dc3545;
+        color: white;
+    }
+
+    .no-data {
+        text-align: center;
+        padding: 20px;
+        color: #6c757d;
+    }
+</style>
+
+<main id="main" class="main">
+    <div class="contact-management">
+        <div class="contact-header">
+            <h2 class="page-title">İletişim Bilgileri Yönetimi</h2>
+            <a href="@Url.Action("Create")" class="create-btn">
+                <i class="fas fa-plus-circle"></i> Yeni Kayıt Oluştur
+            </a>
+        </div>
+
+        @if (!Model.Any())
+        {
+            <div class="no-data">
+                <p>Henüz hiç iletişim bilgisi kaydedilmemiş.</p>
+            </div>
+        }
+        else
+        {
+            <table class="contact-table">
+                <thead>
+                    <tr>
+                        <th>Adres</th>
+                        <th>Telefon</th>
+                        <th>Fax</th>
+                        <th>Whatsapp</th>
+                        <th>Sosyal Medya</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Adres</td>
+                            <td>@item.Telefon</td>
+                            <td>@item.Fax</td>
+                            <td>@item.Whatsapp</td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.Facebook))
+                                {
+                                    <a href="@item.Facebook" target="_blank"><i class="fab fa-facebook"></i></a>
+                                }
+                                @if (!string.IsNullOrEmpty(item.Twitter))
+                                {
+                                    <a href="@item.Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+                                }
+                                @if (!string.IsNullOrEmpty(item.Instagram))
+                                {
+                                    <a href="@item.Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                                }
+                            </td>
+                            <td>
+                                <div class="action-links">
+                                    <a href="@Url.Action("Edit", new { id = item.IletisimId })" class="action-link edit-link">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="@Url.Action("Details", new { id = item.IletisimId })" class="action-link details-link">
+                                        <i class="fas fa-info-circle"></i>
+                                    </a>
+                                    <a href="@Url.Action("Delete", new { id = item.IletisimId })" class="action-link delete-link">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</main>

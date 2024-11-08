@@ -1002,6 +1002,7 @@
     <Compile Include="Controllers\DenemeController.cs" />
     <Compile Include="Controllers\HakkimizdaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IletisimController.cs" />
     <Compile Include="Controllers\KimlikController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1053,6 +1054,11 @@
     <Content Include="Views\Hakkimizda\Index.cshtml" />
     <Content Include="Views\Hakkimizda\Edit.cshtml" />
     <Content Include="Views\Deneme\Index.cshtml" />
+    <Content Include="Views\Iletisim\Create.cshtml" />
+    <Content Include="Views\Iletisim\Delete.cshtml" />
+    <Content Include="Views\Iletisim\Details.cshtml" />
+    <Content Include="Views\Iletisim\Edit.cshtml" />
+    <Content Include="Views\Iletisim\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
