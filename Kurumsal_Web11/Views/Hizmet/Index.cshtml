@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Kurumsal_Web11.Models.Model.Hizmet>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Hizmetler</h2>
+
+<main id="main" class="main">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Başlık</th>
+                <th>Açıklama</th>
+                <th>Resim URL</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.HizmetID</td>
+                    <td>@item.Baslik</td>
+                    <td>@item.Aciklama</td>
+                    <td><img src="@item.ResimURL" /></td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</main>

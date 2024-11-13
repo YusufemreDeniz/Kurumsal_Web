@@ -1,85 +1,206 @@
 ﻿@model Kurumsal_Web11.Models.Model.Iletisim
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "İletişim Bilgileri Oluştur";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<main id="main" class="main">
-    <h2>Create</h2>
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-horizontal">
-            <h4>Iletisim</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.Adres, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Adres, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Adres, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Telefon, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Telefon, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Telefon, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Fax, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Fax, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Fax, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Whatsapp, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Whatsapp, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Whatsapp, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Facebook, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Facebook, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Facebook, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Twitter, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Twitter, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Twitter, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Instagram, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Instagram, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Instagram, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
-            </div>
-        </div>
+<style>
+    .contact-form-container {
+        max-width: 800px;
+        margin: 30px auto;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        padding: 30px;
     }
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
+    .form-header {
+        background: linear-gradient(135deg, #007bff, #0056b3);
+        color: white;
+        padding: 20px;
+        text-align: center;
+        border-radius: 8px 8px 0 0;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+    }
+
+    .control-label {
+        flex: 0 0 25%;
+        font-weight: 600;
+        color: #495057;
+        text-align: right;
+        padding-right: 15px;
+    }
+
+    .input-container {
+        flex: 0 0 75%;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ced4da;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+    }
+
+    .text-danger {
+        color: #dc3545;
+        font-size: 0.9em;
+        margin-top: 5px;
+    }
+
+    .btn-submit {
+        background-color: #28a745;
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+    }
+
+    .btn-submit:hover {
+        background-color: #218838;
+        transform: translateY(-2px);
+    }
+
+    .btn-back {
+        background-color: #6c757d;
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 6px;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 15px;
+        transition: all 0.3s ease;
+    }
+
+    .btn-back:hover {
+        background-color: #545b62;
+        transform: translateY(-2px);
+    }
+
+    .action-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    @@media (max-width: 768px) {
+        .form-group {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .control-label {
+            text-align: left;
+            margin-bottom: 5px;
+            padding-right: 0;
+        }
+
+        .input-container {
+            width: 100%;
+        }
+    }
+</style>
+
+<main id="main" class="main">
+    <div class="contact-form-container">
+        <div class="form-header">
+            <h2>
+                <i class="fas fa-address-card me-2"></i>
+                İletişim Bilgileri Oluştur
+            </h2>
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                @* Adres *@
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Adres, new { @class = "control-label" })
+                    <div class="input-container">
+                        @Html.EditorFor(model => model.Adres, new { htmlAttributes = new { @class = "form-control", placeholder = "Adres giriniz" } })
+                        @Html.ValidationMessageFor(model => model.Adres, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @* Telefon *@
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Telefon, new { @class = "control-label" })
+                    <div class="input-container">
+                        @Html.EditorFor(model => model.Telefon, new { htmlAttributes = new { @class = "form-control", placeholder = "Telefon numarası giriniz" } })
+                        @Html.ValidationMessageFor(model => model.Telefon, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @* Fax *@
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Fax, new { @class = "control-label" })
+                    <div class="input-container">
+                        @Html.EditorFor(model => model.Fax, new { htmlAttributes = new { @class = "form-control", placeholder = "Fax numarası giriniz" } })
+                        @Html.ValidationMessageFor(model => model.Fax, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @* Whatsapp *@
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Whatsapp, new { @class = "control-label" })
+                    <div class="input-container">
+                        @Html.EditorFor(model => model.Whatsapp, new { htmlAttributes = new { @class = "form-control", placeholder = "Whatsapp numarası giriniz" } })
+                        @Html.ValidationMessageFor(model => model.Whatsapp, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @* Facebook *@
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Facebook, new { @class = "control-label" })
+                    <div class="input-container">
+                        @Html.EditorFor(model => model.Facebook, new { htmlAttributes = new { @class = "form-control", placeholder = "Facebook sayfa linki" } })
+                        @Html.ValidationMessageFor(model => model.Facebook, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @* Twitter *@
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Twitter, new { @class = "control-label" })
+                    <div class="input-container">
+                        @Html.EditorFor(model => model.Twitter, new { htmlAttributes = new { @class = "form-control", placeholder = "Twitter hesap linki" } })
+                        @Html.ValidationMessageFor(model => model.Twitter, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @* Instagram *@
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Instagram, new { @class = "control-label" })
+                    <div class="input-container">
+                        @Html.EditorFor(model => model.Instagram, new { htmlAttributes = new { @class = "form-control", placeholder = "Instagram hesap linki" } })
+                        @Html.ValidationMessageFor(model => model.Instagram, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <input type="submit" value="Oluştur" class="btn-submit" />
+                    @Html.ActionLink("Listeye Dön", "Index", null, new { @class = "btn-back" })
+                </div>
+            </div>
+        }
     </div>
-    </main>
+</main>

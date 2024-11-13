@@ -1001,6 +1001,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\DenemeController.cs" />
     <Compile Include="Controllers\HakkimizdaController.cs" />
+    <Compile Include="Controllers\HizmetController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IletisimController.cs" />
     <Compile Include="Controllers\KimlikController.cs" />
@@ -1059,6 +1060,7 @@
     <Content Include="Views\Iletisim\Details.cshtml" />
     <Content Include="Views\Iletisim\Edit.cshtml" />
     <Content Include="Views\Iletisim\Index.cshtml" />
+    <Content Include="Views\Hizmet\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
