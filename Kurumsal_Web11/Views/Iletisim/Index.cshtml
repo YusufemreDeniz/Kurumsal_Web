@@ -136,20 +136,7 @@
                             <td>@item.Telefon</td>
                             <td>@item.Fax</td>
                             <td>@item.Whatsapp</td>
-                            <td>
-                                @if (!string.IsNullOrEmpty(item.Facebook))
-                                {
-                                    <a href="@item.Facebook" target="_blank"><i class="fab fa-facebook"></i></a>
-                                }
-                                @if (!string.IsNullOrEmpty(item.Twitter))
-                                {
-                                    <a href="@item.Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
-                                }
-                                @if (!string.IsNullOrEmpty(item.Instagram))
-                                {
-                                    <a href="@item.Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
-                                }
-                            </td>
+
                             <td>
                                 <div class="action-links">
                                     <a href="@Url.Action("Edit", new { id = item.IletisimId })" class="action-link edit-link">

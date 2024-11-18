@@ -221,32 +221,6 @@
                     <span class="detail-value">@(string.IsNullOrEmpty(Model.Instagram) ? "Belirtilmemiş" : Model.Instagram)</span>
                 </div>
             </div>
-
-            <div class="social-links">
-                @* Facebook Bağlantısı *@
-                <a href="@Model.Facebook"
-                   target="_blank"
-                   class="social-link social-link-facebook @(string.IsNullOrEmpty(Model.Facebook) ? "social-link-disabled" : "")"
-                   title="Facebook">
-                    <i class="fab fa-facebook-square"></i>
-                </a>
-
-                @* Twitter Bağlantısı *@
-                <a href="@Model.Twitter"
-                   target="_blank"
-                   class="social-link social-link-twitter @(string.IsNullOrEmpty(Model.Twitter) ? "social-link-disabled" : "")"
-                   title="Twitter">
-                    <i class="fab fa-twitter-square"></i>
-                </a>
-
-                @* Instagram Bağlantısı *@
-                <a href="@Model.Instagram"
-                   target="_blank"
-                   class="social-link social-link-instagram @(string.IsNullOrEmpty(Model.Instagram) ? "social-link -disabled" : "")"
-                   title="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-            </div>
         </div>
 
         <div class="action-buttons">
