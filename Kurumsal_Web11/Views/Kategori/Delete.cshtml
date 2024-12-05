@@ -1,0 +1,138 @@
+﻿@model Kurumsal_Web11.Models.Model.Kategori
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    /* Genel stil ayarları */
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #eef2f3;
+        color: #333;
+        margin: 0;
+        padding: 20px;
+    }
+
+    /* Ana içerik alanı */
+    .main {
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        margin: 20px 0;
+    }
+
+    /* Başlık stili */
+    h2 {
+        color: #c0392b; /* Kırmızı tonları */
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    h3 {
+        color: #e74c3c; /* Kırmızı tonları */
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+
+    /* Kategori detayları */
+    .dl-horizontal {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0;
+    }
+
+        .dl-horizontal dt, .dl-horizontal dd {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            width: 50%;
+        }
+
+        .dl-horizontal dt {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .dl-horizontal dd {
+            color: #333;
+        }
+
+
+    .btn-back {
+        background-color: #0e318c;
+        color: white;
+        padding: 12px 17px;
+        border-radius: 10px;
+        text-decoration: none;
+    }
+    /* Form eylem alanı stili */
+    .form-actions {
+        margin-top: 20px;
+    }
+
+        .form-actions input[type="submit"] {
+            background-color: #e74c3c; /* Sil butonu için kırmızı */
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+            .form-actions input[type="submit"]:hover {
+                background-color: #c0392b;
+                transform: translateY(-1px);
+            }
+
+    /* Bağlantı stili */
+    a {
+        color: #3498db;
+        text-decoration: none;
+        font-weight: bold;
+        margin-left: 15px; /* Bağlantılar arasında boşluk */
+    }
+
+        a:hover {
+            text-decoration: underline;
+        }
+</style>
+
+<main id="main" class="main">
+    <h2>Kategori Sil</h2>
+
+    <h3>Kategoriyi Silmek İstediğinize Emin Misiniz?</h3>
+    <div>
+        <h4>Kategori</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.KategoriAd)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.KategoriAd)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Aciklama)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Aciklama)
+            </dd>
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions">
+                <input type="submit" value="Sil" class="btn btn-default" />
+                @Html.ActionLink("Geri Dön", "Index", null, new { @class = "btn btn-back" })
+            </div>
+        }
+    </div>
+</main>

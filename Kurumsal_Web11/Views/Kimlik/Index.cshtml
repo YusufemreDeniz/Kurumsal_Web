@@ -5,6 +5,80 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+<style>
+    .page-header {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        border-left: 5px solid #007bff;
+    }
+
+    .page-title {
+        color: #343a40;
+        margin: 0;
+        font-size: 24px;
+    }
+
+    .btn-add {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 3px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+        margin-bottom: 20px;
+    }
+
+        .btn-add:hover {
+            background-color: #0056b3;
+        }
+
+    .content-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+        .content-table th, .content-table td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        .content-table th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .content-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .content-table tr:hover {
+            background-color: #e9ecef;
+        }
+
+    .img-fluid {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .action-link {
+        color: #28a745;
+        text-decoration: none;
+        padding: 8px 12px;
+        border: 1px solid #28a745;
+        border-radius: 3px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+        .action-link:hover {
+            background-color: #28a745;
+            color: white;
+        }
+</style>
+
 
 <main id="main" class="main">
 

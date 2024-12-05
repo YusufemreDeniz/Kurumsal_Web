@@ -1,0 +1,155 @@
+﻿@model Kurumsal_Web11.Models.Model.Kategori
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    /* Genel stil ayarları */
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #eef2f3;
+        color: #333;
+        margin: 0;
+        padding: 20px;
+    }
+
+    /* Ana içerik alanı */
+    .main {
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        margin: 20px 0;
+    }
+
+    /* Başlık stili */
+    h2 {
+        color: #27ae60; /* Yeşil tonları */
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    h4 {
+        color: #2c3e50; /* Koyu mavi tonları */
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    /* Form grubu stili */
+    .form-horizontal {
+        margin-top: 20px;
+    }
+
+    /* Form etiketleri */
+    .control-label {
+        font-weight: bold;
+        color: #555;
+    }
+
+    /* Form kontrol stili */
+    .form-control {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 12px 15px;
+        width: 100%;
+        box-sizing: border-box; /* Padding ve border dahil */
+        transition: border-color 0.3s;
+    }
+
+        .form-control:focus {
+            border-color: #27ae60;
+            outline: none;
+            box-shadow: 0 0 5px rgba(39, 174, 96, 0.5);
+        }
+
+    /* Buton stili */
+    .btn {
+        padding: 12px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .btn-default {
+        background-color: #3498db; /* Mavi tonları */
+        color: white;
+    }
+
+        .btn-default:hover {
+            background-color: #2980b9;
+            transform: translateY(-1px);
+        }
+
+    /* Geri Dön butonu stili */
+    .btn-back {
+        background-color: #e74c3c; /* Kırmızı tonları */
+        color: white;
+        margin-left: 15px; /* Butonlar arasında boşluk */
+    }
+
+        .btn-back:hover {
+            background-color: #c0392b;
+            transform: translateY(-1px);
+        }
+
+    /* Hata mesajı stili */
+    .text-danger {
+        color: #e74c3c;
+    }
+
+    /* Geri Dön linki stili */
+    a {
+        color: #3498db;
+        text-decoration: none;
+        font-weight: bold;
+        margin-top: 20px;
+        display: inline-block; /* Alt alta dizilmesi için */
+    }
+
+        a:hover {
+            text-decoration: underline;
+        }
+</style>
+
+
+<main id="main" class="main">
+    <h2>Yeni Kategori</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Kategori Bilgileri</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.KategoriAd, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.KategoriAd, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.KategoriAd, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Aciklama, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Aciklama, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Aciklama, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Yeni Ekle" class="btn btn-default" />
+                    <a href="@Url.Action("Index")" class="btn btn-back">Geri Dön</a>
+                </div>
+            </div>
+        </div>
+    }
+
+</main>

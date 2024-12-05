@@ -1,0 +1,126 @@
+﻿@model Kurumsal_Web11.Models.Model.Kategori
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    /* Genel stil ayarları */
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #eef2f3;
+        color: #333;
+        margin: 0;
+        padding: 20px;
+    }
+
+    /* Ana içerik alanı */
+    .main {
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        margin: 20px 0;
+    }
+
+    /* Başlık stili */
+    h2 {
+        color: #2c3e50;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    /* Kategori detayları */
+    .dl-horizontal {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0;
+    }
+
+        .dl-horizontal dt, .dl-horizontal dd {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            width: 50%;
+        }
+
+        .dl-horizontal dt {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .dl-horizontal dd {
+            color: #333;
+        }
+
+    /* Bağlantı stili */
+    p {
+        margin-top: 20px;
+    }
+
+    a {
+        color: #3498db;
+        text-decoration: none;
+        font-weight: bold;
+        margin-right: 15px; /* Bağlantılar arasında boşluk */
+    }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+    /* Geri Dön butonu stili */
+    .btn-back {
+        background-color: #e74c3c;
+        color: white;
+        padding: 12px 17px;
+        border-radius: 10px;
+        text-decoration: double;
+    }
+
+        .btn-back:hover {
+            background-color: #c0392b;
+        }
+
+    /* Güncelle butonu stili */
+    .btn-update {
+        background-color: #3498db;
+        color: white;
+        padding: 12px 17px;
+        border-radius: 10px;
+        text-decoration: double;
+    }
+
+        .btn-update:hover {
+            background-color: #2980b9;
+        }
+</style>
+
+<main id="main" class="main">
+    <h2>Kategori Detay</h2>
+
+    <div>
+        <h4>Kategori</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.KategoriAd)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.KategoriAd)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Aciklama)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Aciklama)
+            </dd>
+        </dl>
+    </div>
+    <p>
+        <a class="btn-update" href="@Url.Action("Edit", new { id = Model.KategoriId })">Güncelle</a>
+        <a class="btn-back" href="@Url.Action("Index")">Geri Dön</a>
+    </p>
+</main>

@@ -1,0 +1,150 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    /* Genel stil ayarları */
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #eef2f3;
+        color: #333;
+        margin: 0;
+        padding: 20px;
+    }
+
+    /* Ana içerik alanı */
+    .main {
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        margin: 20px 0;
+    }
+
+    /* Başlık stili */
+    h2 {
+        color: #27ae60; /* Yeşil tonları */
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    /* Form stili */
+    .form {
+        margin-top: 20px;
+    }
+
+    /* Form grubu stili */
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    /* Form etiketleri */
+    .control-label {
+        font-weight: bold;
+        color: #555;
+    }
+
+    /* Form kontrol stili */
+    .form-control {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 12px 15px;
+        width: 100%;
+        box-sizing: border-box; /* Padding ve border dahil */
+        transition: border-color 0.3s;
+    }
+
+        .form-control:focus {
+            border-color: #27ae60;
+            outline: none;
+            box-shadow: 0 0 5px rgba(39, 174, 96, 0.5);
+        }
+
+    /* Buton stili */
+    .btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .btn-primary {
+        background-color: #3498db; /* Mavi tonları */
+        color: white;
+    }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+            transform: translateY(-1px);
+        }
+
+    .btn-default {
+        background-color: #e74c3c; /* Kırmızı tonları */
+        color: white;
+        margin-left: 10px; /* Butonlar arasında boşluk */
+    }
+
+        .btn-default:hover {
+            background-color: #c0392b;
+            transform: translateY(-1px);
+        }
+
+    /* Hata mesajı stili */
+    .required {
+        color: #e74c3c; /* Kırmızı tonları */
+    }
+</style>
+<main id="main" class="main">
+
+    <script type="text/javascript">
+        CKEDITOR.replace('editor');
+    </script>
+
+    <h2>Blog Kayıt Ekle</h2>
+
+    <div class="form">
+        @*<form class="form-validate form-horizontal" id="feedback_form" method="post" action="/Blog/Create/" enctype="multipart/form-data">*@
+        @using (Html.BeginForm("Create", "Blog", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken();
+            <div class="form-group">
+                <label for="Baslik" class="control-label col-lg-2">Başlık <span class="required">*</span></label>
+                <div class="col-lg-10">
+                    <input class="form-control" id="Baslik" name="Baslik" minlength="5" type="text" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="KategoriId" class="control-label col-lg-2">Kategori <span class="required">*</span></label>
+                <div class="col-lg-10">
+                    @Html.DropDownList("KategoriId", null, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Icerik" class="control-label col-lg-2">İçerik <span class="required">*</span></label>
+                <div class="col-lg-10">
+                    <textarea class="ckeditor" name="Icerik" class="form-control" required></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="ResimURL" class="control-label col-lg-2">Resim </label>
+                <div class="col-lg-10">
+                    <input required type="file" class="form-control" name="ResimURL" accept=".jpg,.png,.jpeg" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <button class="btn btn-primary" type="submit">Ekle</button>
+                    <button class="btn btn-default" type="button"><a href="/Blog/Index" style="color: white; text-decoration: none;">İptal</a></button>
+                </div>
+            </div>
+
+        }
+    </div>
+
+
+</main>

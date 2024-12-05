@@ -1,0 +1,134 @@
+﻿@model IEnumerable<Kurumsal_Web11.Models.Model.Kategori>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    /* Genel stil ayarları */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+        margin: 0;
+        padding: 20px;
+    }
+
+    /* Ana içerik alanı */
+    .main {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin: 20px 0;
+    }
+
+    /* Başlık stili */
+    h2 {
+        color: #2c3e50;
+    }
+
+    /* Tablo stili */
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .table th {
+            background-color: #3498db;
+            color: white;
+        }
+
+    /* Buton stili */
+    .action-link {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+        display: inline-block; /* Butonların yan yana durmasını sağlar */
+    }
+
+    /* Yeni Oluştur butonu */
+    .new-link {
+        background-color: #2ecc71;
+        color: white;
+    }
+
+        .new-link:hover {
+            background-color: #27ae60;
+        }
+
+    /* Güncelle butonu */
+    .edit-link {
+        background-color: #f39c12;
+        color: white;
+    }
+
+        .edit-link:hover {
+            background-color: #e67e22;
+        }
+
+    /* Detaylar butonu */
+    .details-link {
+        background-color: #3498db;
+        color: white;
+    }
+
+        .details-link:hover {
+            background-color: #2980b9;
+        }
+
+    /* Sil butonu */
+    .delete-link {
+        background-color: #e74c3c;
+        color: white;
+    }
+
+        .delete-link:hover {
+            background-color: #c0392b;
+        }
+</style>
+<main id="main" class="main">
+    <h2>Kategoriler</h2>
+
+    <p>
+        @Html.ActionLink("Yeni Oluştur", "Create", null, new { @class = "action-link new-link" })
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.KategoriAd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Aciklama)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KategoriAd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Aciklama)
+                </td>
+                <td>
+                    @Html.ActionLink("Güncelle", "Edit", new { id = item.KategoriId }, new { @class = "action-link edit-link" })  
+                    @Html.ActionLink("Detaylar", "Details", new { id = item.KategoriId }, new { @class = "action-link details-link" }) 
+                    @Html.ActionLink("Sil", "Delete", new { id = item.KategoriId }, new { @class = "action-link delete-link" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</main>

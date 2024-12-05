@@ -4,13 +4,13 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+
 <style>
     body {
         font-family: Arial, sans-serif;
         background-color: #f4f4f4;
         margin: 0;
         padding: 20px;
-
     }
 
     .main {
@@ -63,10 +63,7 @@
         .table img {
             border-radius: 5px;
         }
-
-    
 </style>
-
 
 <main id="main" class="main">
     <h2>Hizmetler</h2>
@@ -94,9 +91,6 @@
                     <td><a href="/Hizmet/Edit/@item.HizmetID">Düzenle</a> | <a href="/Hizmet/Delete/@item.HizmetID">Sil</a></td>
                 </tr>
             }
-
-
-
         </tbody>
     </table>
 </main>
