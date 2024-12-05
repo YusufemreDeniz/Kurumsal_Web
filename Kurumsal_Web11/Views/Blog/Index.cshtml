@@ -5,6 +5,20 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#myTable').DataTable(
+
+            {
+                "language": {
+                    "url": '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json'
+                }
+            }
+        );
+    });
+</script>
+
+
 <style>
     /* Genel stil ayarları */
     body {
@@ -99,7 +113,7 @@
 
     <a class="btn btn-outline-success" href="/Blog/Create/">Yeni Blog Ekle</a>
 
-    <table class="table table-striped">
+    <table class="table table-striped" id="myTable">
         <thead>
             <tr>
                 <th>#</th>

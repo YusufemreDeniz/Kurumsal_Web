@@ -93,6 +93,7 @@ namespace Kurumsal_Web11.Controllers
             return View(blog);
         }
 
+        [HttpPost]
         public ActionResult Delete(int id)
         {
             var b = db.Blog.Find(id);
