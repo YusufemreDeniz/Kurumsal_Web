@@ -49,6 +49,8 @@
     <link href="~/Content/DataTables/css/jquery.dataTables.css" rel="stylesheet" />
     <link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
     <script src="~/Scripts/DataTables/dataTables.bootstrap4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
 
 
 </head>
@@ -229,7 +231,7 @@
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         <img src="~/Content/AdminLayout/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">Admin</span>
+                        <span class="username d-none d-md-block dropdown-toggle ps-2">@Session["eposta"]</span>
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -272,9 +274,9 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
+                            <a class="dropdown-item d-flex align-items-center" href="/Admin/Logout/">
                                 <i class="bi bi-box-arrow-right"></i>
-                                <span>Sign Out</span>
+                                <span>Çıkış Yap</span>
                             </a>
                         </li>
 
@@ -330,7 +332,7 @@
             </li>
             <li class="d-flex flex-column bg-light">
                 <!-- Yeni Nav Başlığı -->
-                <a class="nav-link" data-bs-toggle="collapse" href="#submenu1" role="button"  aria-controls="submenu">
+                <a class="nav-link" data-bs-toggle="collapse" href="#submenu1" role="button" aria-controls="submenu">
                     Blog Kayıtları <i class="bi-chevron-down rotate-icon ms-auto"></i>
                 </a>
                 <!-- Alt Başlıklar -->
@@ -418,7 +420,7 @@
                         </a>
                     </li>
                 </ul>
-            </li><!-- End Components Nav -->
+            </li> End Components Nav 
 
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
@@ -561,7 +563,7 @@
                     <i class="bi bi-file-earmark"></i>
                     <span>Blank</span>
                 </a>
-            </li><!-- End Blank Page Nav -->
+            </li> End Blank Page Nav 
 
         </ul>
 
@@ -605,7 +607,7 @@
     <script src="~/Content/AdminLayout/assets/js/main.js"></script>
 
     <script src="~/Content/ckeditor/ckeditor.js"></script>
-
+    @RenderSection("Scripts", required: false)
 </body>
 
 </html>

@@ -50,10 +50,10 @@
         transition: all 0.3s ease;
     }
 
-    .form-control:focus {
-        border-color: #007bff;
-        box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
-    }
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+        }
 
     .text-danger {
         color: #dc3545;
@@ -70,10 +70,10 @@
         transition: all 0.3s ease;
     }
 
-    .btn-submit:hover {
-        background-color: #218838;
-        transform: translateY(-2px);
-    }
+        .btn-submit:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
 
     .btn-back {
         background-color: #6c757d;
@@ -87,10 +87,10 @@
         transition: all 0.3s ease;
     }
 
-    .btn-back:hover {
-        background-color: #545b62;
-        transform: translateY(-2px);
-    }
+        .btn-back:hover {
+            background-color: #545b62;
+            transform: translateY(-2px);
+        }
 
     .action-buttons {
         display: flex;
@@ -146,7 +146,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Telefon, new { @class = "control-label" })
                     <div class="input-container">
-                        @Html.EditorFor(model => model.Telefon, new { htmlAttributes = new { @class = "form-control", placeholder = "Telefon numarası giriniz" } })
+                        @Html.EditorFor(model => model.Telefon, new { htmlAttributes = new { @class = "form-control", placeholder = "Telefon numarası giriniz", type="tel" } })
                         @Html.ValidationMessageFor(model => model.Telefon, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -159,7 +159,6 @@
                         @Html.ValidationMessageFor(model => model.Fax, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
                 @* Whatsapp *@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Whatsapp, new { @class = "control-label" })
@@ -203,4 +202,30 @@
             </div>
         }
     </div>
+
+    @section Scripts {
+
+        <script>
+            $(document).ready(function () {
+                // Telefon numarası maskesi
+                $('#Telefon').mask('(000) 000-0000', {
+                    placeholder: "(_ _ _) _ _ _ - _ _ _ _",
+                    clearIfNotMatch: true
+                });
+
+                // Whatsapp numarası maskesi
+                $('#Whatsapp').mask('+00 (000) 000-0000', {
+                    placeholder: "+90 (___) ___-____",
+                    clearIfNotMatch: true
+                });
+
+                // Fax numarası maskesi
+                $('#Fax').mask('(000) 000-0000', {
+                    placeholder: "(_ _ _) _ _ _ - _ _ _ _",
+                    clearIfNotMatch: true
+                });
+            });
+        </script>
+    }
+
 </main>

@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+
 <style type="text/css">
     .contact-form {
         max-width: 600px;
@@ -35,11 +36,11 @@
         transition: all 0.3s ease;
     }
 
-    .form-control:focus {
-        border-color: #007bff;
-        outline: none;
-        box-shadow: 0 0 0 3px rgba(0,123,255,0.1);
-    }
+        .form-control:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0,123,255,0.1);
+        }
 
     .validation-error {
         color: #dc3545;
@@ -67,9 +68,9 @@
         border: none;
     }
 
-    .btn-primary:hover {
-        background-color: #0056b3;
-    }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
 
     .btn-secondary {
         background-color: #6c757d;
@@ -78,18 +79,18 @@
         border: none;
     }
 
-    .btn-secondary:hover {
-        background-color: #545b62;
-    }
+        .btn-secondary:hover {
+            background-color: #545b62;
+        }
 
     @@media (max-width: 768px) {
-    .contact-form {
-        width: 95%;
-        padding: 15px;
+        .contact-form {
+            width: 95%;
+            padding: 15px;
+        }
     }
-}
-
 </style>
+
 <main>
     @using (Html.BeginForm())
     {
@@ -109,7 +110,7 @@
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Telefon, new { @class = "form-label" })
-                @Html.EditorFor(model => model.Telefon, new { htmlAttributes = new { @class = "form-control", placeholder = "Telefon numarası", type = "tel" } })
+                @Html.EditorFor(model => model.Telefon, new { htmlAttributes = new { @class = "form-control", placeholder = "Telefon numarası", type = "tel", @name = "Telefon" } })
                 @Html.ValidationMessageFor(model => model.Telefon, "", new { @class = "validation-error" })
             </div>
 
@@ -150,33 +151,31 @@
                 @Html.ActionLink("Geri Dön", "Index", null, new { @class = "btn btn-secondary" })
             </div>
         </div>
+
+    }
+    @section Scripts {
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                // Telefon numarası maskesi
+                $('#Telefon').mask('(000) 000-0000', {
+                    placeholder: "(_ _ _) _ _ _ - _ _ _ _",
+                    clearIfNotMatch: true
+                });
+
+                // Whatsapp numarası maskesi
+                $('#Whatsapp').mask('+00 (000) 000-0000', {
+                    placeholder: "+90 (___) ___-____",
+                    clearIfNotMatch: true
+                });
+
+                // Fax numarası maskesi
+                $('#Fax').mask('(000) 000-0000', {
+                    placeholder: "(_ _ _) _ _ _ - _ _ _ _",
+                    clearIfNotMatch: true
+                });
+            });
+        </script>
     }
 </main>
 
-<script>
-    // Optional: Client-side validation
-    $(document).ready(function () {
-        $('form').validate({
-            rules: {
-                Telefon: {
-                    required: true,
-                    minlength: 10
-                },
-                Adres: {
-                    required: true,
-                    minlength: 10
-                }
-            },
-            messages: {
-                Telefon: {
-                    required: "Telefon numarası zorunludur",
-                    minlength: "Geçerli bir telefon numarası girin"
-                },
-                Adres: {
-                    required: "Adres bilgisi zorunludur",
-                    minlength: "Adres çok kısa"
-                }
-            }
-        });
-    });
-</script>

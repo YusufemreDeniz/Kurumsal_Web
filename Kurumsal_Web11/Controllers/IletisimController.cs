@@ -81,6 +81,7 @@ namespace Kurumsal_Web11.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "IletisimId,Adres,Telefon,Fax,Whatsapp,Facebook,Twitter,Instagram")] Iletisim iletisim)
         {
+
             if (ModelState.IsValid)
             {
                 db.Entry(iletisim).State = EntityState.Modified;

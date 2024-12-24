@@ -1,5 +1,6 @@
 ﻿using Kurumsal_Web11.Models;
 using Kurumsal_Web11.Models.DataContext;
+using Kurumsal_Web11.Models.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,33 @@ namespace Kurumsal_Web11.Controllers
         // GET: Admin
         public ActionResult Index()
         {
+            var sorgu = db.Kategori.ToList();
+            return View(sorgu);
+        }
+
+        public ActionResult Login()
+        {
             return View();
+        }
+        [HttpPost]
+        public ActionResult Login(Admin admin)
+        {
+            var login = db.Admin.Where(x => x.Eposta == admin.Eposta).SingleOrDefault();
+            if (login != null && login.Eposta==admin.Eposta && login.Sifre == admin.Sifre)
+            {
+                Session["adminid"] = login.AdminId;
+                Session["eposta"] = login.Eposta;
+                return RedirectToAction("Index", "Admin");
+            }
+            ViewBag.Uyari = "Kullanıcı Adı yada şifre yanlış";
+            return View();
+        }
+        public ActionResult Logout()
+        {
+            Session["adminid"] = null;
+            Session["eposta"] = null;
+            Session.Abandon();
+            return RedirectToAction("Login", "Admin");
         }
     }
 }
