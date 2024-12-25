@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Kurumsal_Web11.Models.Model.Slider>
+@{
+    Layout = null;
+}
+
+
+<style>
+    .flexslider {
+        position: relative;
+    }
+
+    .slides li {
+        position: relative;
+    }
+
+    .flex-caption {
+        position: absolute;
+        top: 375px; /* Dikey ortalama */
+        right: 20px; /* Sağdan 20px boşluk */
+        transform: translateY(-50%); /* Dikey olarak ortalamak için */
+        background: rgba(0, 0, 0, 0.5); /* Saydam arka plan */
+        color: cyan; /* Yazı rengi */
+        padding: 10px; /* İç boşluk */
+        border-radius: 5px; /* Kenar yuvarlama */
+    }
+
+        .flex-caption h3 {
+            margin: 0; /* Başlık için varsayılan marjı kaldır */
+            color: gold;
+        }
+
+        .flex-caption p {
+            margin: 5px 0 0; /* Açıklama için marj ayarı */
+        }
+</style>
+
+<div id="main" class="flexslider">
+    <ul class="slides">
+        @foreach (var item in Model)
+        {
+            <li>
+                <img src="@item.ResimURL" alt="@item.Baslik" />
+                <div class="flex-caption">
+                    <h3>@item.Baslik</h3>
+                    <p>@item.Acikllama</p>
+                    <a href="#" class="btn-btntheme">Devamını Oku</a>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
+

@@ -1,0 +1,132 @@
+﻿@model Kurumsal_Web11.Models.Model.Slider
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .main {
+        background-color: #f8f9fa;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+        color: #333;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #dc3545;
+        padding-bottom: 10px;
+    }
+
+    h3 {
+        color: #dc3545;
+        margin-bottom: 20px;
+    }
+
+    .dl-horizontal {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+        .dl-horizontal dt {
+            font-weight: bold;
+            color: #495057;
+            text-align: right;
+            padding-right: 15px;
+        }
+
+        .dl-horizontal dd {
+            color: #212529;
+        }
+
+    .slider-image {
+        max-width: 300px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+
+        .slider-image:hover {
+            transform: scale(1.05);
+        }
+
+    .form-actions {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .btn-default {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        transition: all 0.3s ease;
+    }
+
+        .btn-default:hover {
+            background-color: #c82333;
+            transform: translateY(-2px);
+        }
+
+    .action-link {
+        color: #007bff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+        .action-link:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+</style>
+
+<main id="main" class="main">
+    <h2>Slider Sil</h2>
+
+    <h3>Silmek İstediğinize Emin Misiniz?</h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Baslik)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Baslik)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Acikllama)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Acikllama)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ResimURL)
+            </dt>
+
+            <dd>
+                <img src="@Model.ResimURL" class="slider-image" alt="Slider Resmi" />
+            </dd>
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Sil" class="btn btn-default" />
+                @Html.ActionLink("Geri Dön", "Index", null, new { @class = "action-link" })
+            </div>
+        }
+    </div>
+</main>

@@ -1,0 +1,172 @@
+﻿@model Kurumsal_Web11.Models.Model.Slider
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .main {
+        background-color: #f8f9fa;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    h2 {
+        color: #333;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #28a745;
+        padding-bottom: 10px;
+        text-align: center;
+    }
+
+    h4 {
+        color: #495057;
+        text-align: center;
+    }
+
+    .form-horizontal {
+        background-color: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .control-label {
+        font-weight: bold;
+        color: #495057;
+        text-align: right;
+        padding-right: 15px;
+    }
+
+    .form-control {
+        border-radius: 5px;
+        border: 1px solid #ced4da;
+        transition: all 0.3s ease;
+    }
+
+        .form-control:focus {
+            border-color: #28a745;
+            box-shadow: 0 0 0 0.2rem rgba(40,167,69,0.25);
+        }
+
+    .btn-default {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        transition: all 0.3s ease;
+        display: block;
+        width: 100%;
+    }
+
+        .btn-default:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+    .validation-summary-errors {
+        color: #dc3545;
+        margin-bottom: 20px;
+    }
+
+    .text-danger {
+        color: #dc3545;
+        font-size: 0.9em;
+    }
+
+    .file-input {
+        position: relative;
+        overflow: hidden;
+    }
+
+        .file-input input[type=file] {
+            font-size: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+        }
+
+    .file-input-wrapper {
+        display: flex;
+        align-items: center;
+    }
+
+    .file-input-text {
+        flex-grow: 1;
+        padding-right: 10px;
+    }
+
+    .back-link {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        color: #007bff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+        .back-link:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+</style>
+
+<main id="main" class="main">
+    <h2>Slider Güncelle</h2>
+
+    @using (Html.BeginForm("Edit", "Slider", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Slider Bilgilerini Düzenle</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.SliderId)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Baslik, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Baslik, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Baslik, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Acikllama, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Acikllama, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Acikllama, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ResimURL, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="file-input-wrapper">
+                        <input type="file" name="ResimURL" class="form-control file-input" placeholder="Resim Seçiniz!" />
+                    </div>
+                    @Html.ValidationMessageFor(model => model.ResimURL, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Güncelle" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    @Html.ActionLink("Geri Dön", "Index", null, new { @class = "back-link" })
+</main>
