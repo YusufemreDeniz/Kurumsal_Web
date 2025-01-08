@@ -16,7 +16,7 @@ namespace Kurumsal_Web11.Models.Model
         public string Adres { get; set; }
         [StringLength(250, ErrorMessage ="250 Karakter Olmalıdır!!")]
         public string Telefon { get; set; }
-        public string Fax { get; set; }
+        public string Email { get; set; }
         public string Whatsapp { get; set; }
         public string Facebook { get; set; }
         public string Twitter { get; set; }

@@ -153,10 +153,10 @@
 
                 @* Fax *@
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Fax, new { @class = "control-label" })
+                    @Html.LabelFor(model => model.Email, new { @class = "control-label" })
                     <div class="input-container">
-                        @Html.EditorFor(model => model.Fax, new { htmlAttributes = new { @class = "form-control", placeholder = "Fax numarası giriniz" } })
-                        @Html.ValidationMessageFor(model => model.Fax, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "E-mail adresi giriniz" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 @* Whatsapp *@
@@ -216,12 +216,6 @@
                 // Whatsapp numarası maskesi
                 $('#Whatsapp').mask('+00 (000) 000-0000', {
                     placeholder: "+90 (___) ___-____",
-                    clearIfNotMatch: true
-                });
-
-                // Fax numarası maskesi
-                $('#Fax').mask('(000) 000-0000', {
-                    placeholder: "(_ _ _) _ _ _ - _ _ _ _",
                     clearIfNotMatch: true
                 });
             });

@@ -19,19 +19,38 @@
         right: 20px; /* Sağdan 20px boşluk */
         transform: translateY(-50%); /* Dikey olarak ortalamak için */
         background: rgba(0, 0, 0, 0.5); /* Saydam arka plan */
-        color: cyan; /* Yazı rengi */
+        color: white; /* Yazı rengi */
         padding: 10px; /* İç boşluk */
         border-radius: 5px; /* Kenar yuvarlama */
     }
 
         .flex-caption h3 {
             margin: 0; /* Başlık için varsayılan marjı kaldır */
-            color: gold;
+            color: white;
+            text-transform: uppercase; /* Başlığı büyük harflerle yaz */
         }
 
         .flex-caption p {
             margin: 5px 0 0; /* Açıklama için marj ayarı */
         }
+
+    .btn-btntheme {
+        display: inline-block; /* Butonun blok olarak davranmasını sağlar */
+        background-color: #007bff; /* Buton arka plan rengi */
+        color: white; /* Yazı rengi */
+        padding: 10px 20px; /* İç boşluk (dikey ve yatay) */
+        text-decoration: none; /* Alt çizgiyi kaldır */
+        border-radius: 5px; /* Kenar yuvarlama */
+        border: 2px solid #0056b3; /* Kenarlık rengi */
+        font-size: 14px; /* Yazı boyutu */
+        font-weight: bold; /* Yazı kalınlığı */
+        transition: background-color 0.3s ease; /* Geçiş efekti */
+    }
+
+    .btn-btntheme:hover {
+        background-color: #0056b3; /* Butonun üzerine gelindiğinde arka plan rengi */
+        border-color: #003d80; /* Butonun üzerine gelindiğinde kenarlık rengi */
+    }
 </style>
 
 <div id="main" class="flexslider">

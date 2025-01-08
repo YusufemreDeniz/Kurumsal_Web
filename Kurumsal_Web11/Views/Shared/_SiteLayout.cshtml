@@ -9,6 +9,14 @@
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.7.2/flexslider.min.css" />
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
     <!-- Favicons -->
@@ -51,25 +59,6 @@
                     <li><a href="/Home/Hizmetlerimiz/">Hizmetlerimiz</a></li>
                     <li><a href="/Home/Blog/">Blog</a></li>
                     <li><a href="/Home/Iletisim/">İletişim</a></li>
-                    @*<li class="dropdown">
-                            <a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                            <ul>
-                                <li><a href="#">Dropdown 1</a></li>
-                                <li class="dropdown">
-                                    <a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                                    <ul>
-                                        <li><a href="#">Deep Dropdown 1</a></li>
-                                        <li><a href="#">Deep Dropdown 2</a></li>
-                                        <li><a href="#">Deep Dropdown 3</a></li>
-                                        <li><a href="#">Deep Dropdown 4</a></li>
-                                        <li><a href="#">Deep Dropdown 5</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Dropdown 2</a></li>
-                                <li><a href="#">Dropdown 3</a></li>
-                                <li><a href="#">Dropdown 4</a></li>
-                            </ul>
-                        </li>*@
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
@@ -83,70 +72,131 @@
             <div class="container">
                 <div class="row justify-content-center text-center">
                     <div class="col-lg-6">
-                        <h4>Join Our Newsletter</h4>
-                        <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
-                        <form action="~/Content/SiteLayout/forms/newsletter.php" method="post" class="php-email-form">
-                            <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe"></div>
-                            <div class="loading">Loading</div>
-                            <div class="error-message"></div>
-                            <div class="sent-message">Your subscription request has been sent. Thank you!</div>
-                        </form>
+                        <h4>KURUMSAL WEB SİTE PROJESİ</h4>
+
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container footer-top">
-            <div class="row gy-4">
-                <div class="col-lg-4 col-md-6 footer-about">
-                    <a href="index.html" class="d-flex align-items-center">
-                        <span class="sitename">Moderna</span>
-                    </a>
-                    <div class="footer-contact pt-3">
-                        <p>A108 Adam Street</p>
-                        <p>New York, NY 535022</p>
-                        <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-                        <p><strong>Email:</strong> <span>info@example.com</span></p>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <h5 class="widgetheading">İLETİŞİM</h5>
+                    <address>
+                        <strong>🏠<br />@ViewBag.Iletisim.Adres</strong><br />
+                    </address>
+                    <p>
+                        <i class="bi-phone"></i><br />@ViewBag.Iletisim.Telefon<br /><br />
+                        <i class="bi bi-whatsapp"></i><br />@ViewBag.Iletisim.Whatsapp<br /><br />
+                        <i class="bi-envelope"></i><br />@ViewBag.Iletisim.Email
+                    </p>
+                </div>
+                <div class="col-lg-2 col-md-3 footer-links">
+                    <div class="widget">
+                        <h5 class="widgetheading">MENÜ</h5>
+                        <ul>
+                            <li><i class="bi bi-chevron-right"></i> <a href="/Home/Index/">Ana Sayfa</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="/Home/Hakkimizda/">Hakkımızda</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="/Home/Blog/">Blog</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="/Home/Hizmetlerimiz/">Hizmetler</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="/Home/Iletisim/">İletişim</a></li>
+                        </ul>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Useful Links</h4>
-                    <ul>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
-                    </ul>
+                <div class="col-lg-3">
+                    <div class="widget">
+                        <h5 class="widgetheading">SON BLOG YAZILARI</h5>
+                        <ul class="link-list">
+                            @foreach (var item in ViewBag.Blog)
+                            {
+                                <li><a href="/Home/BlogDetay/@item.BlogId">@item.Baslik</a></li>
+                            }
+                        </ul>
+                    </div>
+                    <style>
+                        .link-list {
+                            list-style: none; /* Noktaları kaldır */
+                            padding-left: 0; /* Varsayılan padding'i sıfırla */
+                        }
+
+                            .link-list li::before {
+                                content: "👉"; /* Sağa doğru ok ikonu */
+                                margin-right: 10px; /* Ok ile metin arasına boşluk ekle */
+                                color: #000; /* Ok rengi (isteğe bağlı) */
+                            }
+                    </style>
                 </div>
-                <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Our Services</h4>
-                    <ul>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Web Design</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Web Development</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Product Management</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Marketing</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-4 col-md-12">
-                    <h4>Follow Us</h4>
-                    <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
-                    <div class="social-links d-flex">
-                        <a href=""><i class="bi bi-twitter-x"></i></a>
-                        <a href=""><i class="bi bi-facebook"></i></a>
-                        <a href=""><i class="bi bi-instagram"></i></a>
-                        <a href=""><i class="bi bi-linkedin"></i></a>
+                <div class="col-lg-3">
+                    <div class="widget">
+                        <h5 class="widgetheading">Hizmetlerimiz</h5>
+                        <div id="flickr_badge">
+                            @foreach (var item in ViewBag.Hizmetler)
+                            {
+                                <img src="@item.ResimURL" width="110" height="65">
+                            }
+
+                        </div>
+                        <style>
+                            #flickr_badge {
+                                display: flex;
+                                flex-wrap: wrap;
+                                gap: 10px;
+                            }
+
+                                #flickr_badge img {
+                                    margin-right: 10px;
+                                    margin-bottom: 10px;
+                                }
+                        </style>
                     </div>
                 </div>
             </div>
         </div>
         <div class="container copyright text-center mt-4">
-            <p>© <span>Copyright</span> <strong class="px-1 sitename">Moderna</strong> <span>All Rights Reserved</span></p>
+            @DateTime.Now.ToUniversalTime()<p>© <span>Tüm Hakları Gizlidir</span></p>
             <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you've purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                 <a href="https://kurumsalweb.com/">KurumsalWeb</a> Tarafından Tasarlandı. 
             </div>
+        </div>
+
+        <div class="col-lg-6">
+            <ul class="social-links">
+                <li><a href="www.facebook.com/@ViewBag.Iletisim.Facebook" data-placement="top" title="Facebook"><i class="bi-facebook"></i></a></li>
+                <li><a href="www.x.com/@ViewBag.Iletisim.Twitter" data-placement="top" title="Twitter"><i class="bi-twitter-x"></i></a></li>
+                <li><a href="www.instagram.com/@ViewBag.Iletisim.Instagram" data-placement="top" title="Instagram"><i class="bi-instagram"></i></a></li>
+            </ul>
+            <style>
+                /* Footer içindeki social-links div'ini sağ alt köşeye taşıma */
+                footer {
+                    position: relative; /* Footer'ı relative yaparak içindeki absolute elementleri konumlandırabiliriz */
+                }
+
+                .social-links {
+                    position: absolute; /* Sağ alt köşeye taşımak için */
+                    bottom: 120px; /* Alt boşluk */
+                    right: 200px; /* Sağ boşluk */
+                    list-style: none; /* Noktaları kaldır */
+                    padding: 0; /* Varsayılan padding'i sıfırla */
+                    margin: 0; /* Varsayılan margin'i sıfırla */
+                    display: flex; /* Yan yana sırala */
+                    gap: 10px; /* Elemanlar arası boşluk */
+                }
+
+                    .social-links li {
+                        display: inline-block; /* Yan yana sırala */
+                        margin-right: 10px; /* Elemanlar arası boşluk (flexbox kullanmıyorsanız) */
+                    }
+
+                        .social-links li:last-child {
+                            margin-right: 0; /* Son elemanın sağ boşluğunu sıfırla */
+                        }
+
+                    .social-links a {
+                        color: #fff; /* Link rengi (isteğe bağlı) */
+                        font-size: 20px; /* İkon boyutu (isteğe bağlı) */
+                        text-decoration: none; /* Alt çizgiyi kaldır */
+                    }
+            </style>
         </div>
     </footer>
 
