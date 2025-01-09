@@ -15,10 +15,6 @@ namespace Kurumsal_Web11.Controllers
         {
             ViewBag.Hizmetler = db.Hizmet.ToList().OrderByDescending(x => x.HizmetID);
 
-            ViewBag.Iletisim = db.Iletisim.SingleOrDefault();
-
-            ViewBag.Blog = db.Blog.ToList().OrderByDescending(x => x.BlogId);
-
             return View();
         }
 
@@ -30,5 +26,26 @@ namespace Kurumsal_Web11.Controllers
         {
             return View(db.Hizmet.ToList().OrderByDescending(x => x.HizmetID));
         }
+        public ActionResult Hakkimizda()
+        {
+
+
+            return View(db.Hakkimizda.SingleOrDefault());
+        }
+        public ActionResult Hizmetlerimiz()
+        {
+            return View(db.Hizmet.ToList().OrderByDescending(x => x.HizmetID));
+        }
+        public ActionResult FooterPartial()
+        {
+            ViewBag.Hizmetler = db.Hizmet.ToList().OrderByDescending(x => x.HizmetID);
+
+            ViewBag.Iletisim = db.Iletisim.SingleOrDefault();
+
+            ViewBag.Blog = db.Blog.ToList().OrderByDescending(x => x.BlogId);
+
+            return PartialView();
+        }
+
     }
 }

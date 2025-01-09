@@ -1,9 +1,9 @@
-﻿
+﻿@model IEnumerable<Kurumsal_Web11.Models.Model.Hizmet>
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Hizmetlerimiz";
     Layout = "~/Views/Shared/_SiteLayout.cshtml";
 }
-
 <style>
     #thumbs {
         list-style: none; /* Noktaları kaldır */
@@ -18,6 +18,7 @@
     .item-thumbs {
         text-align: center; /* Resimleri ortala */
     }
+
         .item-thumbs img {
             max-width: 100%; /* Resimlerin genişliğini sınırla */
             height: auto; /* Yüksekliği otomatik ayarla */
@@ -64,6 +65,7 @@
         border-radius: 5px; /* Kenarları yuvarlat */
         display: none; /* Başlangıçta görünmez */
     }
+
     .item-thumbs {
         position: relative; /* Pozisyonu mutlak yap */
     }
@@ -78,6 +80,7 @@
         border-radius: 50%; /* Yuvarlak buton */
         cursor: pointer; /* İmleci göster */
     }
+
     .item-thumbs {
         position: relative; /* Pozisyonu mutlak yap */
     }
@@ -102,10 +105,11 @@
         .overlay-img-thumb:hover {
             background-color: rgba(0, 0, 0, 0.9); /* Hover durumunda arka plan rengi */
         }
+
     .nav-heading-container {
         text-align: center; /* İçeriği ortala */
         width: 100%; /* Genişliği tam yap */
-        margin: 0 auto; /* Otomatik margin ile ortala */
+        margin: 60px auto; /* Otomatik margin ile ortala */
     }
 
     .nav-heading {
@@ -121,6 +125,7 @@
         border: 2px solid #007bff;
         transition: all 0.3s ease;
         margin-bottom: 30px; /* Alt boşluk */
+        margin-top:10px;
     }
 
         .nav-heading:hover {
@@ -129,32 +134,47 @@
             transform: translateY(-5px);
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
         }
+    /* Sol ve sağ ok butonları için genel stil */
+    #prevBtn, #nextBtn {
+        background-color: rgba(0, 0, 0, 0.7); /* Yarı saydam siyah arka plan */
+        color: white; /* Beyaz ok rengi */
+        border: none; /* Kenarlık yok */
+        border-radius: 50%; /* Yuvarlak buton */
+        width: 40px; /* Genişlik */
+        height: 40px; /* Yükseklik */
+        font-size: 24px; /* Ok boyutu */
+        cursor: pointer; /* İmleci el işareti yap */
+        display: flex; /* Flexbox ile içeriği ortala */
+        align-items: center; /* Dikey ortalama */
+        justify-content: center; /* Yatay ortalama */
+        transition: background-color 0.3s ease, transform 0.3s ease; /* Geçiş efekti */
+    }
+
+        /* Butonlara hover efekti */
+        #prevBtn:hover, #nextBtn:hover {
+            background-color: rgba(0, 0, 0, 0.9); /* Hover durumunda daha koyu arka plan */
+            transform: scale(1.1); /* Butonu biraz büyüt */
+        }
+
+    /* Sol ok butonu için ek stil */
+    #prevBtn {
+        margin-right: 10px; /* Resim ile arasına boşluk ekle */
+    }
+
+    /* Sağ ok butonu için ek stil */
+    #nextBtn {
+        margin-left: 10px; /* Resim ile arasına boşluk ekle */
+    }
 </style>
 
-
-<main class="main">
-    <section id="featured">
-        <!--Start slider-->
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <!--Slider-->
-                    @{
-                        Html.RenderAction("SliderPartial", "Home");
-                    }
-                    <!--end slider-->
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Featured Services Section -->
+<div class="container">
     <div class="row">
         <div class="nav-heading-container">
             <h4 class="nav-heading">Hizmetlerimiz</h4>
             <div class="row">
                 <section id="projects">
                     <ul id="thumbs" class="portfolio row">
-                        @foreach (var item in ViewBag.Hizmetler)
+                        @foreach (var item in Model)
                         {
                             <li class="col-lg-3 design" data-id="id-0" data-type="web">
                                 <div class="item-thumbs">
@@ -170,29 +190,57 @@
             </div>
         </div>
     </div>
+</div>
 
-    <script>
-        $(document).ready(function () {
-            $('.item-thumbs').on('click', function () {
-                $(this).find('.description').toggle(); // Açıklamayı göster/gizle
+<script>
+    $(document).ready(function () {
+        // Tüm resimleri ve açıklamaları bir diziye al
+        var images = [];
+        $('.overlay-img-thumb').each(function () {
+            images.push({
+                image: $(this).data('image'),
+                description: $(this).data('description')
             });
         });
-        $(document).ready(function () {
-            $('.overlay-img-thumb').on('click', function () {
-                var imageSrc = $(this).data('image'); // Resim URL'sini al
-                var description = $(this).data('description'); // Açıklamayı al
 
-                // SweetAlert2 modalını göster
-                Swal.fire({
-                    title: 'Resim Detayı',
-                    html: '<img src="' + imageSrc + '" alt="" style="width: 100%; border-radius: 5px; margin-bottom: 10px;" />' +
-                        '<p>' + description + '</p>',
-                    showCloseButton: true,
-                    confirmButtonText: 'Tamam',
-                });
+        // Geçerli resmin indeksini takip et
+        var currentIndex = 0;
+
+        // SweetAlert2 modalını özelleştir
+        function showImageModal(index) {
+            Swal.fire({
+                title: 'Resim Detayı',
+                html: `
+                    <div style="display: flex; align-items: center; justify-content: center;">
+                        <button id="prevBtn">&#10094;</button>
+                        <img src="${images[index].image}" alt="" style="width: 80%; border-radius: 5px; margin: 0 10px;" />
+                        <button id="nextBtn">&#10095;</button>
+                    </div>
+                    <p style="margin-top: 10px;">${images[index].description}</p>
+                `,
+                showCloseButton: true,
+                confirmButtonText: 'Kapat',
+                didOpen: () => {
+                    // Sol ok butonuna tıklama
+                    document.getElementById('prevBtn').addEventListener('click', () => {
+                        currentIndex = (currentIndex - 1 + images.length) % images.length;
+                        showImageModal(currentIndex);
+                    });
+
+                    // Sağ ok butonuna tıklama
+                    document.getElementById('nextBtn').addEventListener('click', () => {
+                        currentIndex = (currentIndex + 1) % images.length;
+                        showImageModal(currentIndex);
+                    });
+                }
             });
-        });
-    </script>
+        }
 
-</main>
+        // + butonuna tıklandığında modalı aç
+        $('.overlay-img-thumb').on('click', function () {
+            currentIndex = $(this).closest('li').index(); // Tıklanan resmin indeksini al
+            showImageModal(currentIndex);
+        });
+    });
+</script>
 

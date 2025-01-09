@@ -1,0 +1,35 @@
+﻿@model Kurumsal_Web11.Models.Model.Hakkimizda
+@{
+    ViewBag.Title = "Hakkimizda";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<style>
+    h4 {
+        margin-top: 50px; /* İhtiyaca göre değeri artırın veya azaltın */
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 32px;
+        font-weight: bold;
+        color: #333;
+        background-color: #f8f9fa;
+        padding: 15px 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border: 2px solid #007bff;
+        transition: all 0.3s ease;
+        margin-bottom: 30px; /* Alt boşluk */
+    }
+
+</style>
+<main class="main">
+    <div class="container">
+        <div class="col-md-12">
+            <h4>Kurumsal Web Hakkında</h4>
+            <img src="~/Content/SiteLayout/assets/img/portfolio/product-1.jpg" alt="Responsive image" class="bi-align-center img-fluid" style="width: 700px; height: 500px;" />
+            <p>
+                @Html.Raw(Model.Aciklama)
+            </p>
+        </div>
+    </div>
+
+</main>
