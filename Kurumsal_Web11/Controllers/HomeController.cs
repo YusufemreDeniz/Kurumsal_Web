@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace Kurumsal_Web11.Controllers
@@ -20,7 +21,7 @@ namespace Kurumsal_Web11.Controllers
 
         public ActionResult SliderPartial()
         {
-            return View(db.Slider.ToList().OrderByDescending(x=>x.SliderId));
+            return View(db.Slider.ToList().OrderByDescending(x => x.SliderId));
         }
         public ActionResult HizmetPartial()
         {
@@ -35,6 +36,29 @@ namespace Kurumsal_Web11.Controllers
         public ActionResult Hizmetlerimiz()
         {
             return View(db.Hizmet.ToList().OrderByDescending(x => x.HizmetID));
+        }
+        public ActionResult Iletisim()
+        {
+            return View(db.Iletisim.SingleOrDefault());
+        }
+        [HttpPost]
+        public ActionResult Iletisim(string adsoyad = null, string email = null, string konu = null, string mesaj = null)
+        {
+            if (adsoyad != null && email != null)
+            {
+                WebMail.SmtpServer = "smtp.gmail.com";
+                WebMail.UserName = "kurumsal.web11@gmail.com";
+                WebMail.Password = "aqou qgan mzvt vztp"; // Gmail şifreniz veya uygulama şifresi
+                WebMail.EnableSsl = true; // Güvenli bağlantıyı etkinleştirin
+                WebMail.SmtpPort = 587; // Standart TLS portunu kullanın
+                WebMail.Send("kurumsal.web11@gmail.com ", konu, email + "-" + mesaj);
+                ViewBag.Uyari = "Mesajınız başarı ile gönderilmiştir!!";
+            }
+            else
+            {
+                ViewBag.Uyari = "Hata Oluştu! Tekrar Deneyiniz!";
+            }
+            return View(db.Iletisim.SingleOrDefault());
         }
         public ActionResult FooterPartial()
         {
