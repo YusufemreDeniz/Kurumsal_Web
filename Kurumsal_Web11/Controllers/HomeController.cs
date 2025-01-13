@@ -5,14 +5,17 @@ using System.Linq;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 
 namespace Kurumsal_Web11.Controllers
 {
     public class HomeController : Controller
     {
+
         private KurumsalDBContext db = new KurumsalDBContext();
         // GET: Home
-        public ActionResult Index()
+        public ActionResult Index(int Sayfa=1)
         {
             ViewBag.Hizmetler = db.Hizmet.ToList().OrderByDescending(x => x.HizmetID);
 
@@ -29,8 +32,6 @@ namespace Kurumsal_Web11.Controllers
         }
         public ActionResult Hakkimizda()
         {
-
-
             return View(db.Hakkimizda.SingleOrDefault());
         }
         public ActionResult Hizmetlerimiz()
@@ -59,6 +60,27 @@ namespace Kurumsal_Web11.Controllers
                 ViewBag.Uyari = "Hata Oluştu! Tekrar Deneyiniz!";
             }
             return View(db.Iletisim.SingleOrDefault());
+        }
+        public ActionResult Blog(int Sayfa=1)
+        {
+            return View(db.Blog.Include("Kategori").OrderByDescending(x => x.BlogId).ToPagedList(Sayfa,3));
+        }
+        public ActionResult BlogDetay(int id)
+        {
+            var blog = db.Blog.Include("Kategori").Where(x => x.BlogId == id).SingleOrDefault();
+            if (blog == null)
+            {
+                return HttpNotFound();
+            }
+            return View(blog);
+        }
+        public ActionResult BlogKAtegoriPartial()
+        {
+            return PartialView(db.Kategori.Include("Blogs").ToList().OrderBy(x => x.KategoriAd));
+        }
+        public ActionResult BlogKayitPartial()
+        {
+            return PartialView(db.Blog.ToList().OrderByDescending(x=>x.BlogId));
         }
         public ActionResult FooterPartial()
         {

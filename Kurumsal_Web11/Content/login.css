@@ -1,0 +1,97 @@
+    <style>
+        /* Genel stil */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #007bff, #6c757d);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-wrap {
+            background: #ffffff;
+            padding: 2rem;
+            padding-bottom:15px;
+            padding-top:5px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .login-img {
+            font-size: 52px;
+            color: #007bff;
+            margin-bottom: 25px;
+            
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .input-group-addon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+            font-size: 1.2rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 15px 10px 40px; /* Solda daha fazla boşluk */
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+            font-size: 1rem;
+            box-sizing: border-box; /* Taşmayı engeller */
+            transition: border-color 0.3s ease;
+        }
+
+            .form-control:focus {
+                border-color: #007bff;
+            }
+
+        .btn {
+            display: inline-block;
+            width: 100%;
+            padding: 12px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            text-decoration: none;
+        }
+
+            .btn:hover {
+                background: #0056b3;
+            }
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+        .alert {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+    </style>

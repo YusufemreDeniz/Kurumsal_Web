@@ -1,0 +1,126 @@
+<style>
+    #thumbs {
+        list-style: none; /* Noktaları kaldır */
+        padding: 0; /* İç boşluğu kaldır */
+        margin: 0; /* Dış boşluğu kaldır */
+    }
+
+        #thumbs li {
+            margin-bottom: 30px; /* Alt boşluk ekle */
+        }
+
+    .item-thumbs {
+        text-align: center; /* Resimleri ortala */
+    }
+        .item-thumbs img {
+            max-width: 100%; /* Resimlerin genişliğini sınırla */
+            height: auto; /* Yüksekliği otomatik ayarla */
+            width: 390px; /* İstediğiniz genişlik değeri */
+            border-radius: 5px; /* Kenarları yuvarlat */
+        }
+
+    .item-thumbs {
+        position: relative; /* Pozisyonu mutlak yap */
+    }
+
+    .overlay-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5); /* Saydam siyah arka plan */
+        opacity: 0; /* Başlangıçta görünmez */
+        transition: opacity 0.3s; /* Geçiş efekti */
+    }
+
+    .item-thumbs:hover .overlay-img {
+        opacity: 1; /* Üzerine gelindiğinde görünür */
+    }
+
+    .overlay-img-thumb {
+        position: absolute;
+        top: 50%; /* Dikey ortalama */
+        left: 50%; /* Yatay ortalama */
+        transform: translate(-50%, -50%); /* Tam ortalama */
+        color: white; /* Beyaz yazı rengi */
+        font-size: 30px; /* Font boyutu */
+        display: block; /* Görünür yap */
+    }
+
+    .description {
+        position: absolute;
+        bottom: 10px; /* Alt taraftan 10px boşluk */
+        left: 10px; /* Sol taraftan 10px boşluk */
+        background-color: rgba(255, 255, 255, 0.8); /* Beyaz saydam arka plan */
+        color: black; /* Siyah yazı rengi */
+        padding: 5px; /* İçerik için boşluk */
+        border-radius: 5px; /* Kenarları yuvarlat */
+        display: none; /* Başlangıçta görünmez */
+    }
+    .item-thumbs {
+        position: relative; /* Pozisyonu mutlak yap */
+    }
+
+    .overlay-img-thumb {
+        position: absolute;
+        top: 10px; /* Üstten 10px boşluk */
+        right: 10px; /* Sağdan 10px boşluk */
+        color: black; /* Siyah yazı rengi */
+        font-size: 20px; /* Font boyutu */
+        padding: 5px; /* İçerik için boşluk */
+        border-radius: 50%; /* Yuvarlak buton */
+        cursor: pointer; /* İmleci göster */
+    }
+    .item-thumbs {
+        position: relative; /* Pozisyonu mutlak yap */
+    }
+
+    .overlay-img-thumb {
+        position: absolute; /* Mutlak konumlandırma */
+        top: 10px; /* Üstten 10px boşluk */
+        left: 10px; /* Soldan 10px boşluk */
+        background-color: rgba(0, 0, 0, 0.7); /* Siyah saydam arka plan */
+        color: white; /* Beyaz yazı rengi */
+        font-size: 20px; /* Font boyutu */
+        width: 40px; /* Genişlik */
+        height: 40px; /* Yükseklik */
+        display: flex; /* Flexbox kullanarak içeriği ortala */
+        align-items: center; /* Dikey ortalama */
+        justify-content: center; /* Yatay ortalama */
+        border-radius: 5px; /* Kenarları hafif yuvarlat */
+        cursor: pointer; /* İmleci göster */
+        transition: background-color 0.3s; /* Geçiş efekti */
+    }
+
+        .overlay-img-thumb:hover {
+            background-color: rgba(0, 0, 0, 0.9); /* Hover durumunda arka plan rengi */
+        }
+    .nav-heading-container {
+        text-align: center; /* İçeriği ortala */
+        width: 100%; /* Genişliği tam yap */
+        margin: 0 auto; /* Otomatik margin ile ortala */
+    }
+
+    .nav-heading {
+        font-family: 'Arial', sans-serif;
+        font-size: 32px;
+        font-weight: bold;
+        color: #333;
+        background-color: #f8f9fa;
+        padding: 15px 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        display: inline-block; /* Başlığı içeriğe göre sığdır */
+        border: 2px solid #007bff;
+        transition: all 0.3s ease;
+        margin-bottom: 30px; /* Alt boşluk */
+    }
+
+        .nav-heading:hover {
+            background-color: #007bff;
+            color: #fff;
+            transform: translateY(-5px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+</style>

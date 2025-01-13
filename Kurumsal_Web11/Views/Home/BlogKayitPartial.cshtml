@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Kurumsal_Web11.Models.Model.Blog>
+
+<style>
+    cata li img {
+        width: 60px; /* Resim genişliği küçültüldü */
+        height: 45px; /* Resim yüksekliği küçültüldü */
+        object-fit: cover; /* Resmi kırpmadan sığdırır */
+        border-radius: 5px; /* Resim köşelerini yuvarlar */
+        margin-right: 10px; /* Resim ile metin arası boşluk */
+    }
+</style>
+<ul class="cata">
+    @foreach (var item in Model)
+    {
+        <li>
+            <img src="@item.ResimURL" class="pull-left" alt="@item.Baslik" />
+            <h6><a href="/Home/BlogDetay/@item.BlogId">@item.Baslik</a></h6>
+            <p>
+                @Html.Raw(item.Icerik.Substring(0, 10))
+            </p>
+        </li>
+    }
+</ul>

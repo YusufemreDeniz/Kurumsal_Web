@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Kurumsal_Web11.Models.Model.Kategori>
+
+
+<style>
+    .cat {
+        list-style: none; /* Liste işaretlerini kaldırır */
+        padding: 0; /* Padding'i sıfırlar */
+        margin: 0; /* Margin'i sıfırlar */
+        margin-bottom: 20px; /* Kategoriler ile Son Blog Kayıtları arası boşluk */
+    }
+
+        .cat li {
+            margin-bottom: 5px; /* Kategoriler arası boşluğu azaltır */
+            padding: 6px 10px; /* Kategori iç boşluğunu azaltır */
+            background-color: #f8f9fa; /* Arka plan rengi */
+            border-radius: 5px; /* Köşeleri yuvarlar */
+            transition: background-color 0.3s ease; /* Geçiş efekti */
+            display: flex; /* İçeriği yatayda hizalar */
+            align-items: center; /* İçeriği dikeyde hizalar */
+            padding: 6px 10px; /* Kategori iç boşluğunu azaltır */
+        }
+
+           .cat li:hover {
+                background-color: #e9ecef; /* Hover durumunda arka plan rengi */
+            }
+
+            .cat li a {
+                text-decoration: none; /* Link alt çizgisini kaldırır */
+                color: #333; /* Link rengi */
+                font-size: 16px; /* Yazı boyutu */
+                font-weight: 500; /* Yazı kalınlığı */
+                display: flex; /* İçeriği yatayda hizalar */
+                align-items: center; /* İçeriği dikeyde hizalar */
+                flex-grow: 1; /* Linkin tüm alanı kaplamasını sağlar */
+            }
+
+                .cat li a i {
+                    margin-right: 8px; /* İkon ile metin arası boşluk */
+                    color: #007bff; /* İkon rengi */
+                }
+
+            .cat li span {
+                margin-left: 8px; /* Yazı ile sayı arası boşluk */
+                color: #6c757d; /* Sayı rengi */
+                font-size: 14px; /* Sayı yazı boyutu */
+                background-color: #e9ecef; /* Sayı arka plan rengi */
+                padding: 4px 8px; /* Sayı iç boşluğu */
+                border-radius: 12px; /* Sayı köşelerini yuvarlar */
+            }
+</style>
+<ul class="cat">
+    @foreach (var item in Model)
+    {
+        <li><i class="icon-angle-right"></i><a href="/Home/Blog/@item.KategoriId">📂@item.KategoriAd</a><span>(@item.Blogs.Count())</span></li>
+    }
+</ul>
