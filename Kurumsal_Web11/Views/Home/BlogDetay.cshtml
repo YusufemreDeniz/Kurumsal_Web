@@ -6,6 +6,8 @@
     Layout = "~/Views/Shared/_SiteLayout.cshtml";
 }
 
+
+
 <style>
     .blog-detail-container {
         max-width: 800px;
@@ -235,11 +237,94 @@
             }
 
     .widget
-    
-    
+
+
     b {
         text-transform: uppercase;
     }
+    /* Yorum Yap Formu Stilleri */
+    .comment-section {
+        margin-top: 40px; /* Model.Icerik ile arasına boşluk eklendi */
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+        .comment-section h3 {
+            font-family: 'Arial', sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            border-bottom: 3px solid #007bff;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .comment-section input,
+        .comment-section textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Arial', sans-serif;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+            .comment-section input:focus,
+            .comment-section textarea:focus {
+                border-color: #007bff;
+                outline: none;
+            }
+
+        .comment-section button {
+            padding: 12px 30px; /* Buton boyutunu büyüttük */
+            font-family: 'Arial', sans-serif;
+            font-size: 16px;
+            font-weight: bold; /* Yazıyı kalınlaştırdık */
+            color: white;
+            background-color: #28a745; /* Yeşil arka plan rengi */
+            border: none;
+            border-radius: 25px; /* Köşeleri yuvarlak yaptık */
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Gölge efekti ekledik */
+            position: relative;
+            overflow: hidden;
+        }
+
+            /* Buton Hover Efekti */
+            .comment-section button:hover {
+                background-color: #218838; /* Daha koyu yeşil hover rengi */
+                transform: translateY(-2px); /* Hafif yukarı hareket */
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Gölgeyi artırdık */
+            }
+
+            /* Buton Aktif Efekti */
+            .comment-section button:active {
+                transform: translateY(0); /* Tıklama anında hareketi sıfırla */
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Gölgeyi azalt */
+            }
+
+            /* Buton Üzerine Gradient Efekti */
+            .comment-section button::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3));
+                transition: left 0.5s ease;
+            }
+
+            .comment-section button:hover::before {
+                left: 100%; /* Gradient efekti kaydırma */
+            }
 </style>
 <main class="main">
     <!-- Özelleştirilmiş Blog Başlığı -->
@@ -260,9 +345,9 @@
             <div class="widgetb">
                 <h5 class="widgetheadingb">Son Blog Kayıtları</h5>
 
-                    @{
-                        Html.RenderAction("BlogKayitPartial", "Home");
-                    }
+                @{
+                    Html.RenderAction("BlogKayitPartial", "Home");
+                }
             </div>
         </div>
 
@@ -273,7 +358,43 @@
             <div class="blog-detail-content">
                 @Html.Raw(Model.Icerik)
             </div>
+            <div class="row">
+                <div class="comment-section">
+                    <h3>Yorum Yap</h3>
+                    <form>
+                        <div>
+                            <input type="text" id="adsoyad" placeholder="Adınız Soyadınız" class="form-control" required /><br />
+                            <input type="email" id="eposta" placeholder="Mail Adresiniz" class="form-control" required /><br />
+                            <textarea typeof="text" id="yorumicerik" class="form-control" placeholder="Yorumunuz"></textarea><br />
+                            <button type="submit" class="btn btn-success" id="gonder" value="Yorum Yap">Yorum Yap</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
             <a href="/Home/Blog/" class="back-to-blog-link">← Blog Sayfasına Dön</a>
         </div>
+
     </div>
+
 </main>
+<script src="~/Content/SiteLayout/js/jquery.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#gonder").click(function () {
+            var adisoyadi = $("#adsoyad").val();
+            var epostasi = $("#eposta").val();
+            var yorumunuz = $("#icerik").val();
+            $.ajax({
+                url: '/Home/YorumYap/',
+                data: {adsoyad:adisoyadi,eposta: epostasi,icerik:yorumunuz,blogid:@Model.BlogId },
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                    alert("Yorumunuz eklendi, kontrol edildikten sonra yayınlanacaktır.");
+                }
+            });
+        });
+    })
+
+</script>

@@ -7,6 +7,7 @@ using System.Web.Helpers;
 using System.Web.Mvc;
 using PagedList;
 using PagedList.Mvc;
+using Kurumsal_Web11.Models;
 
 namespace Kurumsal_Web11.Controllers
 {
@@ -15,7 +16,7 @@ namespace Kurumsal_Web11.Controllers
 
         private KurumsalDBContext db = new KurumsalDBContext();
         // GET: Home
-        public ActionResult Index(int Sayfa=1)
+        public ActionResult Index(int Sayfa = 1)
         {
             ViewBag.Hizmetler = db.Hizmet.ToList().OrderByDescending(x => x.HizmetID);
 
@@ -61,9 +62,9 @@ namespace Kurumsal_Web11.Controllers
             }
             return View(db.Iletisim.SingleOrDefault());
         }
-        public ActionResult Blog(int Sayfa=1)
+        public ActionResult Blog(int Sayfa = 1)
         {
-            return View(db.Blog.Include("Kategori").OrderByDescending(x => x.BlogId).ToPagedList(Sayfa,3));
+            return View(db.Blog.Include("Kategori").OrderByDescending(x => x.BlogId).ToPagedList(Sayfa, 3));
         }
         public ActionResult BlogDetay(int id)
         {
@@ -74,13 +75,24 @@ namespace Kurumsal_Web11.Controllers
             }
             return View(blog);
         }
+        public JsonResult YorumYap(string adsoyad, string eposta, string yorumicerik,int blogid)
+        {
+            if (yorumicerik==null)
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            db.Yorum.Add(new Yorum { AdSoyad = adsoyad, Eposta = eposta, YorumIcerik = yorumicerik, BlogId = blogid, Onay=false });
+            db.SaveChanges();
+            Response.Redirect("/Home/BlogDetay/" + blogid);
+            return Json(false, JsonRequestBehavior.AllowGet);
+        }
         public ActionResult BlogKAtegoriPartial()
         {
             return PartialView(db.Kategori.Include("Blogs").ToList().OrderBy(x => x.KategoriAd));
         }
         public ActionResult BlogKayitPartial()
         {
-            return PartialView(db.Blog.ToList().OrderByDescending(x=>x.BlogId));
+            return PartialView(db.Blog.ToList().OrderByDescending(x => x.BlogId));
         }
         public ActionResult FooterPartial()
         {

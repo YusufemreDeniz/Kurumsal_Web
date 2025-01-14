@@ -19,6 +19,7 @@ namespace Kurumsal_Web11.Models
         public string Eposta { get; set; }
         [DisplayName("Yorumunuz:")]
         public string YorumIcerik { get; set; }
+        public bool Onay { get; set; }
         public int? BlogId { get; set; }
         public Blog Blog { get; set; }
     }
