@@ -3,8 +3,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Kurumsal Web Sitemiz</title>
-    <meta name="description" content="" />
+    <title>@ViewBag.Title - @ViewBag.Kimlik.Title</title>
+    <meta name="description" content="@Html.Raw(ViewBag.Kimlik.Description)" />
+    <meta name="keywords" content="@ViewBag.Kimlik.Keywords"/>
+
+
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
 
@@ -49,7 +52,12 @@
             <a href="/Home/Index/" class="logo d-flex align-items-center">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <!-- <img src="assets/img/logo.png" alt=""> -->
-                <h1 class="sitename">Kurumsal Web</h1>
+                <a class="navbar-brand" href="">@*"<span>K</span>urumsalWeb"*@<img src="@ViewBag.Kimlik.LogoURL" height="30" width="75" />@ViewBag.Kimlik.Unvan</a>
+                <style>
+                    .navbar-brand{
+                        text-transform:uppercase;
+                    }
+                </style>
             </a>
             <nav id="navmenu" class="navmenu">
                 <ul>
