@@ -1415,6 +1415,7 @@
     <Compile Include="Controllers\KategoriController.cs" />
     <Compile Include="Controllers\KimlikController.cs" />
     <Compile Include="Controllers\SliderController.cs" />
+    <Compile Include="Controllers\YorumController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1498,6 +1499,12 @@
     <Content Include="Views\Home\BlogKAtegoriPartial.cshtml" />
     <Content Include="Views\Home\BlogKayitPartial.cshtml" />
     <Content Include="Views\Home\BlogDetay.cshtml" />
+    <Content Include="Views\Yorum\Create.cshtml" />
+    <Content Include="Views\Yorum\Delete.cshtml" />
+    <Content Include="Views\Yorum\Details.cshtml" />
+    <Content Include="Views\Yorum\Edit.cshtml" />
+    <Content Include="Views\Yorum\Index.cshtml" />
+    <Content Include="Views\Home\KategoriBlog.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

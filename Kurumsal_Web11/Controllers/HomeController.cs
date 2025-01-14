@@ -66,9 +66,14 @@ namespace Kurumsal_Web11.Controllers
         {
             return View(db.Blog.Include("Kategori").OrderByDescending(x => x.BlogId).ToPagedList(Sayfa, 3));
         }
+        public ActionResult KategoriBlog(int id,int Sayfa=1)
+        {
+            var b = db.Blog.Include("Kategori").OrderByDescending(x => x.BlogId).Where(x => x.Kategori.KategoriId == id).ToPagedList(Sayfa,3);
+            return View(b);
+        }
         public ActionResult BlogDetay(int id)
         {
-            var blog = db.Blog.Include("Kategori").Where(x => x.BlogId == id).SingleOrDefault();
+            var blog = db.Blog.Include("Kategori").Include("Yorums").Where(x => x.BlogId == id).SingleOrDefault();
             if (blog == null)
             {
                 return HttpNotFound();

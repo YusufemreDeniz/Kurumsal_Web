@@ -351,8 +351,7 @@
             </div>
         </div>
 
-        <div class="blog-detail-container">
-            <h1 class="blog-detail-title">@Model.Baslik</h1>
+        <div class="blog-detail-container">            <h1 class="blog-detail-title">@Model.Baslik</h1>
             <img src="@Model.ResimURL" alt="@Model.Baslik" class="blog-detail-image" />
             <p class="blog-detail-category">Kategori: @Model.Kategori.KategoriAd</p>
             <div class="blog-detail-content">
@@ -370,24 +369,39 @@
                         </div>
                     </form>
                 </div>
+                <a href="/Home/Blog/" class="back-to-blog-link">← Blog Sayfasına Dön</a>
             </div>
-            <a href="/Home/Blog/" class="back-to-blog-link">← Blog Sayfasına Dön</a>
+        <br />
+
+            <div class="row">
+                <div>
+                    <h3>Blog Makale Yorumları</h3>
+                    @foreach (var item in Model.Yorums.OrderByDescending(x=>x.YorumId).Where(x=>x.Onay==true))
+                    {
+                        <p>@item.AdSoyad  - @item.Eposta</p>
+                        <p>@item.YorumIcerik</p>
+                        <hr />
+                    }
+
+                </div>
+            </div>
+
         </div>
 
     </div>
 
 </main>
-<script src="~/Content/SiteLayout/js/jquery.js"></script>
+<script src="~/Content/SiteLayout/assets/js/main.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
 
         $("#gonder").click(function () {
             var adisoyadi = $("#adsoyad").val();
             var epostasi = $("#eposta").val();
-            var yorumunuz = $("#icerik").val();
+            var yorumunuz = $("#yorumicerik").val();
             $.ajax({
                 url: '/Home/YorumYap/',
-                data: {adsoyad:adisoyadi,eposta: epostasi,icerik:yorumunuz,blogid:@Model.BlogId },
+                data: { adsoyad: adisoyadi, eposta: epostasi, yorumicerik: yorumunuz, blogid:@Model.BlogId },
                 type: 'POST',
                 dataType: 'json',
                 success: function (data) {
@@ -395,6 +409,7 @@
                 }
             });
         });
-    })
+    });
+    
 
 </script>

@@ -1,0 +1,256 @@
+﻿@model IPagedList<Kurumsal_Web11.Models.Model.Blog>
+@using PagedList;
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "KategoriBlog";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+<style>
+    .custom-blog-title {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 32px;
+        font-weight: bold;
+        color: #333;
+        background-color: #f8f9fa;
+        padding: 15px 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border: 2px solid #007bff;
+        transition: all 0.3s ease;
+        display: inline-block;
+        text-align: center;
+        position: absolute;
+        left: 40%;
+        width: auto;
+        text-transform: uppercase;
+    }
+
+    .title {
+        text-transform: uppercase;
+    }
+
+    .containera {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-top: 0; /* Üst boşluğu kaldırır */
+        padding-top: 0; /* Üst padding'i kaldırır */
+    }
+
+    .widgett {
+        flex: 0 0 25%;
+        max-width: 25%;
+        padding-left: 20px;
+        order: 2;
+        margin-left: auto;
+        margin-top: 0;
+        padding-top: 0;
+    }
+
+    .widgetb {
+        order: 3; /* Son blog kayıtlarını kategorilerin altına alır */
+        margin-top: 20px; /* Kategoriler ile son blog kayıtları arası boşluk */
+    }
+
+    .blog-posts {
+        flex: 0 0 75%; /* Blog içeriği %75 genişlikte */
+        max-width: 75%;
+        order: 1; /* Blog içeriğini sola alır */
+    }
+
+    .widgett h5.widgetheading {
+        margin-top: 0; /* Başlığın üst boşluğunu kaldırır */
+        margin-bottom: 10px; /* Başlık ile içerik arası boşluk */
+    }
+
+    .widgetheadinga {
+        font-family: 'Arial', sans-serif; /* Yazı tipi */
+        font-size: 24px; /* Başlık boyutu */
+        font-weight: bold; /* Kalın yazı */
+        color: #333; /* Başlık rengi */
+        margin-bottom: 10px; /* Alt boşluk */
+        padding-bottom: 10px; /* Alt çizgi için boşluk */
+        position: relative; /* Alt çizgi için gerekli */
+        text-transform: uppercase; /* Başlığı büyük harf yapar */
+    }
+
+        .widgetheadinga::after {
+            content: ''; /* Çizgi için içerik */
+            position: absolute; /* Çizgiyi başlığın altına yerleştirir */
+            left: 0; /* Sola hizalar */
+            bottom: 0; /* Alt çizgi */
+            width: 250px; /* Çizgi uzunluğu */
+            height: 3px; /* Çizgi kalınlığı */
+            background-color: #007bff; /* Çizgi rengi */
+            border-radius: 2px; /* Çizgi köşelerini yuvarlar */
+        }
+    /* Son Blog Kayıtları için Stil */
+    .widgett ul.recent {
+        list-style: none; /* Liste işaretlerini kaldırır */
+        padding: 0; /* Padding'i sıfırlar */
+        margin: 0; /* Margin'i sıfırlar */
+    }
+
+        .widgett ul.recent li {
+            margin-bottom: 15px; /* Kayıtlar arası boşluk */
+            display: flex; /* İçeriği yatayda hizalar */
+            align-items: center; /* İçeriği dikeyde hizalar */
+        }
+
+            .widgett ul.recent li img {
+                width: 80px; /* Resim genişliği */
+                height: 60px; /* Resim yüksekliği */
+                object-fit: cover; /* Resmi kırpmadan sığdırır */
+                border-radius: 5px; /* Resim köşelerini yuvarlar */
+                margin-right: 10px; /* Resim ile metin arası boşluk */
+            }
+
+            .widgett ul.recent li a {
+                text-decoration: none; /* Link alt çizgisini kaldırır */
+                color: #333; /* Link rengi */
+                font-size: 14px; /* Yazı boyutu */
+                font-weight: 500; /* Yazı kalınlığı */
+                flex-grow: 1; /* Linkin tüm alanı kaplamasını sağlar */
+            }
+
+                .widgett ul.recent li a:hover {
+                    color: #007bff; /* Hover durumunda link rengi */
+                }
+
+    .widgetb h5.widgetheadingb {
+        font-family: 'Arial', sans-serif; /* Yazı tipi */
+        font-size: 24px; /* Başlık boyutu */
+        font-weight: bold; /* Kalın yazı */
+        color: #333; /* Başlık rengi */
+        margin-bottom: 10px; /* Alt boşluk */
+        padding-bottom: 10px; /* Alt çizgi için boşluk */
+        position: relative; /* Alt çizgi için gerekli */
+        text-transform: uppercase; /* Başlığı büyük harf yapar */
+    }
+
+        .widgetb h5.widgetheadingb::after {
+            content: ''; /* Çizgi için içerik */
+            position: absolute; /* Çizgiyi başlığın altına yerleştirir */
+            left: 0; /* Sola hizalar */
+            bottom: 0; /* Alt çizgi */
+            width: 250px; /* Çizgi uzunluğu */
+            height: 3px; /* Çizgi kalınlığı */
+            background-color: #007bff; /* Çizgi rengi */
+            border-radius: 2px; /* Çizgi köşelerini yuvarlar */
+        }
+
+    .widgetb ul.cata {
+        list-style: none; /* Liste işaretlerini kaldırır */
+        padding: 0; /* Padding'i sıfırlar */
+        margin: 0; /* Margin'i sıfırlar */
+    }
+
+        .widgetb ul.cata li {
+            margin-bottom: 15px; /* Kayıtlar arası boşluk */
+            display: flex; /* İçeriği yatayda hizalar */
+            align-items: center; /* İçeriği dikeyde hizalar */
+        }
+
+            .widgetb ul.cata li h6 {
+                margin: 0; /* Başlık için üst ve alt boşlukları sıfırlar */
+                font-size: 16px; /* Başlık boyutu */
+                font-weight: bold; /* Kalın yazı */
+            }
+
+            .widgetb ul.cata li p {
+                font-family: "Times New Roman";
+                margin: 0; /* Paragraf için üst ve alt boşlukları sıfırlar */
+                margin-right: 10px; /* Başlık ile içerik metni arasına boşluk ekler */
+                font-size: 14px; /* Yazı boyutunu küçültün */
+                color: #666; /* Yazı rengi */
+                text-transform: lowercase; /* Metni küçük harfe çevirir */
+            }
+
+            .widgetb ul.cata li img {
+                width: 60px; /* Resim genişliği küçültüldü */
+                height: 45px; /* Resim yüksekliği küçültüldü */
+                object-fit: cover; /* Resmi kırpmadan sığdırır */
+                border-radius: 5px; /* Resim köşelerini yuvarlar */
+                margin-right: 10px; /* Resim ile metin arası boşluk */
+            }
+
+    .baslik {
+        text-transform: uppercase;
+    }
+</style>
+<main class="main">
+    <!-- Özelleştirilmiş Blog Başlığı -->
+    <section id="blog-header" class="blog-header section">
+        <div class="containera">
+            <h4 class="custom-blog-title">Kategori Blog</h4>
+        </div>
+    </section>
+
+    <!-- Kategoriler ve Son Blog Kayıtları -->
+    <div class="containera">
+        <!-- Widget Section -->
+        <div class="widgett">
+            <h5 class="widgetheadinga">Kategoriler</h5>
+            @{
+                Html.RenderAction("BlogKAtegoriPartial", "Home");
+            }
+            <!-- Son Blog Kayıtları -->
+            <div class="widgetb">
+                <h5 class="widgetheadingb">Son Blog Kayıtları</h5>
+                <ul class="cata">
+                    @foreach (var item in Model)
+                    {
+                        <li>
+                            <img src="@item.ResimURL" class="pull-left" alt="@item.Baslik" />
+                            <h6 class="baslik"><a href="/Home/BlogDetay/@item.BlogId">@item.Baslik</a></h6>
+                            <p>@Html.Raw(item.Icerik.Substring(0, 42).ToLower())</p>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+
+        <!-- Blog Posts Section -->
+        <section id="blog-posts" class="blog-posts section">
+            <div class="container">
+                <div class="row gy-4">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-lg-4">
+                            <article>
+                                <div class="post-img">
+                                    <img src="@item.ResimURL" alt="@item.Baslik" class="img-fluid">
+                                </div>
+
+                                <p class="post-category">@item.Kategori.KategoriAd</p>
+
+                                <h4 class="title">
+                                    <a href="/Home/BlogDetay/@item.BlogId">@item.Baslik</a>
+                                </h4>
+                                <p>
+                                    @Html.Raw(item.Icerik.Length > 250 ? item.Icerik.Substring(0, 250) + "..." : item.Icerik)
+                                </p>
+
+                                <div class="bottom-article">
+                                    <a href="/Home/BlogDetay/@item.BlogId" class="pull-right">Okumaya Devam Et<i class="icon-angle-right"></i></a>
+                                </div>
+                            </article>
+                        </div><!-- End post list item -->
+                    }
+                </div>
+            </div>
+        </section><!-- /Blog Posts Section -->
+    </div>
+
+    <!-- Blog Pagination Section -->
+    <section id="blog-pagination" class="blog-pagination section">
+        <div class="container">
+            <div class="d-flex justify-content-center">
+                @Html.PagedListPager(Model, Sayfa => Url.Action("Blog", new { Sayfa }), PagedListRenderOptions.PageNumbersOnly)
+            </div>
+        </div>
+    </section><!-- /Blog Pagination Section -->
+</main>
+
