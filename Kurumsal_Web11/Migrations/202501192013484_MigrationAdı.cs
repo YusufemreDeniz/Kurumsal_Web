@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class SyncWithDatabase : DbMigration
+    public partial class MigrationAdı : DbMigration
     {
         public override void Up()
         {
@@ -50,6 +50,7 @@
                     AdSoyad = c.String(nullable: false, maxLength: 50),
                     Eposta = c.String(),
                     YorumIcerik = c.String(),
+                    Onay = c.Boolean(nullable: false),
                     BlogId = c.Int(),
                 })
                 .PrimaryKey(t => t.YorumId)
@@ -116,7 +117,7 @@
                 .PrimaryKey(t => t.SliderId);
 
         }
-
+        
         public override void Down()
         {
             DropForeignKey("dbo.Yorum", "BlogId", "dbo.Blog");

@@ -7,13 +7,13 @@ namespace Kurumsal_Web11.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class SyncWithDatabase : IMigrationMetadata
+    public sealed partial class MigrationAdı : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(SyncWithDatabase));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(MigrationAdı));
         
         string IMigrationMetadata.Id
         {
-            get { return "202501132144506_SyncWithDatabase"; }
+            get { return "202501192013484_MigrationAdı"; }
         }
         
         string IMigrationMetadata.Source
