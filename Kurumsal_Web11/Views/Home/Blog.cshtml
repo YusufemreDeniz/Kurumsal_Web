@@ -1,5 +1,6 @@
 ﻿@using PagedList;
 @using PagedList.Mvc;
+@using Kurumsal_Web11.Helper;
 @model IPagedList<Kurumsal_Web11.Models.Model.Blog>
 @{
     ViewBag.Title = "Blog";
@@ -225,14 +226,14 @@
                                 <p class="post-category">@item.Kategori.KategoriAd</p>
 
                                 <h4 class="title">
-                                    <a href="/Home/BlogDetay/@item.BlogId">@item.Baslik</a>
+                                    <a href="/BlogPost/@SeoHelper.ToSeoUrl(item.Baslik).ToLower()-@item.BlogId">@item.Baslik</a>
                                 </h4>
                                 <p>
                                     @Html.Raw(item.Icerik.Length > 250 ? item.Icerik.Substring(0, 250) + "..." : item.Icerik)
                                 </p>
 
                                 <div class="bottom-article">
-                                    <a href="/Home/BlogDetay/@item.BlogId" class="pull-right">Okumaya Devam Et<i class="icon-angle-right"></i></a>
+                                    <a href="/BlogPost/@SeoHelper.ToSeoUrl(item.Baslik).ToLower()-@item.BlogId" class="pull-right">Okumaya Devam Et<i class="icon-angle-right"></i></a>
                                 </div>
                             </article>
                         </div><!-- End post list item -->

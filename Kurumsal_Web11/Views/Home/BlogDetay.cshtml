@@ -393,23 +393,36 @@
 </main>
 <script src="~/Content/SiteLayout/assets/js/main.js"></script>
 <script type="text/javascript">
-    $(document).ready(function () {
-
-        $("#gonder").click(function () {
-            var adisoyadi = $("#adsoyad").val();
-            var epostasi = $("#eposta").val();
-            var yorumunuz = $("#yorumicerik").val();
-            $.ajax({
-                url: '/Home/YorumYap/',
-                data: { adsoyad: adisoyadi, eposta: epostasi, yorumicerik: yorumunuz, blogid:@Model.BlogId },
-                type: 'POST',
-                dataType: 'json',
-                success: function (data) {
-                    alert("Yorumunuz eklendi, kontrol edildikten sonra yayınlanacaktır.");
-                }
-            });
+$(document).ready(function () {
+    $("#gonder").click(function (e) {
+        e.preventDefault(); // Formun varsayılan gönderimini engelle
+        
+        var adisoyadi = $("#adsoyad").val();
+        var epostasi = $("#eposta").val();
+        var yorumunuz = $("#yorumicerik").val();
+        
+        $.ajax({
+            url: '/Home/YorumYap/',
+            data: { 
+                adsoyad: adisoyadi, 
+                eposta: epostasi, 
+                yorumicerik: yorumunuz, 
+                blogid: @Model.BlogId 
+            },
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                alert("Yorumunuz eklendi, kontrol edildikten sonra yayınlanacaktır.");
+                // Formu temizle
+                $("#adsoyad").val('');
+                $("#eposta").val('');
+                $("#yorumicerik").val('');
+            },
+            error: function (xhr, status, error) {
+                alert("Bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.");
+                console.log(error);
+            }
         });
     });
-    
-
+});
 </script>

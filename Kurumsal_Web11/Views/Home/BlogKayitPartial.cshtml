@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<Kurumsal_Web11.Models.Model.Blog>
-
+@using Kurumsal_Web11.Helper;
 <style>
     cata li img {
         width: 60px; /* Resim genişliği küçültüldü */
@@ -14,7 +14,7 @@
     {
         <li>
             <img src="@item.ResimURL" class="pull-left" alt="@item.Baslik" />
-            <h6><a href="/Home/BlogDetay/@item.BlogId">@item.Baslik</a></h6>
+            <h6><a href="/BlogPost/@SeoHelper.ToSeoUrl(item.Baslik).ToLower()-@item.BlogId">@item.Baslik</a></h6>
             <p>
                 @Html.Raw(item.Icerik.Substring(0, 10))
             </p>

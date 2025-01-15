@@ -13,12 +13,14 @@ namespace Kurumsal_Web11.Controllers
     {
         KurumsalDBContext db=new KurumsalDBContext();
         // GET: Admin
+        [Route("yonetimpaneli")]
         public ActionResult Index()
         {
+            ViewBag.YorumOnay = db.Yorum.Where(x => x.Onay == false).Count();
             var sorgu = db.Kategori.ToList();
             return View(sorgu);
         }
-
+        [Route("yonetimpaneli/giris")]
         public ActionResult Login()
         {
             return View();

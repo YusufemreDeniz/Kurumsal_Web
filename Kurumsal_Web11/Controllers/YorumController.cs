@@ -29,7 +29,11 @@ namespace Kurumsal_Web11.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Yorum yorum = db.Yorum.Find(id);
+
+            // Include ile Blog nesnesini de yükle
+            Yorum yorum = db.Yorum.Include(y => y.Blog)
+                                     .FirstOrDefault(y => y.YorumId == id);
+
             if (yorum == null)
             {
                 return HttpNotFound();

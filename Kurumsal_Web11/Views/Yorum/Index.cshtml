@@ -4,73 +4,149 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<main id="main" class="main">
-    <h2>Yorumlar Index</h2>
+<style>
+    .yorum-container {
+        padding: 2rem;
+        background-color: #f8f9fa;
+        min-height: 100vh;
+    }
 
-    <script type="text/javascript">
+    .yorum-baslik {
+        color: #2c3e50;
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 3px solid #3498db;
+    }
+
+    .yorum-table {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+
+        .yorum-table thead {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .yorum-table th {
+            padding: 15px;
+            font-weight: 600;
+        }
+
+        .yorum-table td {
+            padding: 12px 15px;
+            vertical-align: middle;
+        }
+
+        .yorum-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+            transition: all 0.3s ease;
+        }
+
+            .yorum-table tbody tr:nth-of-type(even) {
+                background-color: #f8f9fa;
+            }
+
+            .yorum-table tbody tr:hover {
+                background-color: #f1f4f6;
+                transform: scale(1.01);
+            }
+
+    .islem-butonlari a {
+        display: inline-block;
+        padding: 6px 12px;
+        margin: 0 3px;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .btn-guncelle {
+        background-color: #3498db;
+        color: white;
+    }
+
+    .btn-detay {
+        background-color: #2ecc71;
+        color: white;
+    }
+
+    .btn-sil {
+        background-color: #e74c3c;
+        color: white;
+    }
+
+    .islem-butonlari a:hover {
+        opacity: 0.8;
+        transform: translateY(-2px);
+    }
+
+    .onay-badge {
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 500;
+    }
+
+    .onay-true {
+        background-color: #2ecc71;
+        color: white;
+    }
+
+    .onay-false {
+        background-color: #f1c40f;
+        color: white;
+    }
+</style>
+<script type="text/javascript">
     $(document).ready(function () {
-        $('#myTable').DataTable(
-
-            {
-                "language": {
-                    "url": '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json'
-                }
-            }
-        );
+        $('#myTable').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+            },
+            "order": [[0, "desc"]] // Varsayılan sıralama ayarı eklendi
+        });
     });
-    </script>
+</script>
+<main id="main" class="main">
+    <div class="yorum-container">
+        <h2 class="yorum-baslik">Yorumlar Listesi</h2>
 
-    <table class="table" id="myTable">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Blog.Baslik)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.AdSoyad)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Eposta)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.YorumIcerik)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Onay)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-
-        <tbody>
-            @foreach (var item in Model)
-            {
-
+        <table class="yorum-table" id="myTable">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Blog.Baslik)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.AdSoyad)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Eposta)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.YorumIcerik)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Onay)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Güncelle", "Edit", new { id = item.YorumId }) |
-                        @Html.ActionLink("Detay", "Details", new { id = item.YorumId }) |
-                        @Html.ActionLink("Sil", "Delete", new { id = item.YorumId })
-                    </td>
+                    <th>@Html.DisplayNameFor(model => model.Blog.Baslik)</th>
+                    <th>@Html.DisplayNameFor(model => model.AdSoyad)</th>
+                    <th>@Html.DisplayNameFor(model => model.Eposta)</th>
+                    <th>@Html.DisplayNameFor(model => model.YorumIcerik)</th>
+                    <th>@Html.DisplayNameFor(model => model.Onay)</th>
+                    <th>İşlemler</th>
                 </tr>
-            }
-        </tbody>
-       
-
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Blog.Baslik)</td>
+                        <td>@Html.DisplayFor(modelItem => item.AdSoyad)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Eposta)</td>
+                        <td>@Html.DisplayFor(modelItem => item.YorumIcerik)</td>
+                        <td>
+                            <span class="onay-badge @(item.Onay ? "onay-true" : "onay-false")">
+                                @(item.Onay ? "Onaylı" : "Beklemede")
+                            </span>
+                        </td>
+                        <td class="islem-butonlari">
+                            <a href="@Url.Action("Edit", new { id = item.YorumId })" class="btn-guncelle">Güncelle</a>
+                            <a href="@Url.Action("Details", new { id = item.YorumId })" class="btn-detay">Detay</a>
+                            <a href="@Url.Action("Delete", new { id = item.YorumId })" class="btn-sil">Sil</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </main>

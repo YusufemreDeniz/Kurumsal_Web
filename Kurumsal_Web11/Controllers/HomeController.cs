@@ -16,6 +16,8 @@ namespace Kurumsal_Web11.Controllers
 
         private KurumsalDBContext db = new KurumsalDBContext();
         // GET: Home
+        [Route("")]
+        [Route("Anasayfa")]
         public ActionResult Index()
         {
             ViewBag.Kimlik = db.Kimlik.SingleOrDefault();
@@ -33,16 +35,19 @@ namespace Kurumsal_Web11.Controllers
         {
             return View(db.Hizmet.ToList().OrderByDescending(x => x.HizmetID));
         }
+        [Route("Hakkimizda")]
         public ActionResult Hakkimizda()
         {
             ViewBag.Kimlik = db.Kimlik.SingleOrDefault();
             return View(db.Hakkimizda.SingleOrDefault());
         }
+        [Route("Hizmetlerimiz")]
         public ActionResult Hizmetlerimiz()
         {
             ViewBag.Kimlik = db.Kimlik.SingleOrDefault();
             return View(db.Hizmet.ToList().OrderByDescending(x => x.HizmetID));
         }
+        [Route("Iletisim")]
         public ActionResult Iletisim()
         {
             ViewBag.Kimlik = db.Kimlik.SingleOrDefault();
@@ -67,17 +72,20 @@ namespace Kurumsal_Web11.Controllers
             }
             return View(db.Iletisim.SingleOrDefault());
         }
+        [Route("BlogPost")]
         public ActionResult Blog(int Sayfa = 1)
         {
             ViewBag.Kimlik = db.Kimlik.SingleOrDefault();
             return View(db.Blog.Include("Kategori").OrderByDescending(x => x.BlogId).ToPagedList(Sayfa, 3));
         }
+        [Route("BlogPost/{kategori}/{id:int}")]
         public ActionResult KategoriBlog(int id,int Sayfa=1)
         {
             ViewBag.Kimlik = db.Kimlik.SingleOrDefault();
             var b = db.Blog.Include("Kategori").OrderByDescending(x => x.BlogId).Where(x => x.Kategori.KategoriId == id).ToPagedList(Sayfa,3);
             return View(b);
         }
+        [Route("BlogPost/{baslik}-{id:int}")]//blogdetay sayfası için seourl
         public ActionResult BlogDetay(int id)
         {
             ViewBag.Kimlik = db.Kimlik.SingleOrDefault();
@@ -88,16 +96,33 @@ namespace Kurumsal_Web11.Controllers
             }
             return View(blog);
         }
-        public JsonResult YorumYap(string adsoyad, string eposta, string yorumicerik,int blogid)
+        public JsonResult YorumYap(string adsoyad, string eposta, string yorumicerik, int blogid)
         {
-            if (yorumicerik==null)
+            try
             {
-                return Json(true, JsonRequestBehavior.AllowGet);
+                if (string.IsNullOrEmpty(yorumicerik))
+                {
+                    return Json(new { success = false, message = "Yorum içeriği boş olamaz!" });
+                }
+
+                var yorum = new Yorum
+                {
+                    AdSoyad = adsoyad,
+                    Eposta = eposta,
+                    YorumIcerik = yorumicerik,
+                    BlogId = blogid,
+                    Onay = false
+                };
+
+                db.Yorum.Add(yorum);
+                db.SaveChanges();
+
+                return Json(new { success = true, message = "Yorumunuz başarıyla eklendi. Onaylandıktan sonra yayınlanacaktır." });
             }
-            db.Yorum.Add(new Yorum { AdSoyad = adsoyad, Eposta = eposta, YorumIcerik = yorumicerik, BlogId = blogid, Onay=false });
-            db.SaveChanges();
-            Response.Redirect("/Home/BlogDetay/" + blogid);
-            return Json(false, JsonRequestBehavior.AllowGet);
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Yorum eklenirken bir hata oluştu: " + ex.Message });
+            }
         }
         public ActionResult BlogKAtegoriPartial()
         {
