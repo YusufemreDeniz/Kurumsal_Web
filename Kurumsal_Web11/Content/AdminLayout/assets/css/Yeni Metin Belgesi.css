@@ -1,0 +1,223 @@
+<style>
+    /* Ana Container Stilleri */
+    .admin-container {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 20px;
+    }
+
+    /* Başlık Stilleri */
+    h2 {
+        color: #2c3e50;
+        font-size: 2.5rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+        padding-bottom: 10px;
+    }
+
+    h2:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(to right, #3498db, #2ecc71);
+        border-radius: 2px;
+    }
+
+    h4 {
+        color: #34495e;
+        font-size: 1.8rem;
+        font-weight: 600;
+        text-align: center;
+        margin: 1rem 0;
+        position: relative;
+    }
+
+    /* Form Stilleri */
+    .form-horizontal {
+        background: #ffffff;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .form-horizontal:hover {
+        transform: translateY(-5px);
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+        position: relative;
+    }
+
+    .control-label {
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 0.5rem;
+        display: block;
+        font-size: 1.1rem;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 12px 15px;
+        font-size: 1rem;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        background-color: #f8f9fa;
+    }
+
+    .form-control:focus {
+        border-color: #3498db;
+        box-shadow: 0 0 10px rgba(52, 152, 219, 0.2);
+        background-color: #ffffff;
+    }
+
+    /* Hata Mesajı Stilleri */
+    .text-danger {
+        color: #e74c3c;
+        font-size: 0.9rem;
+        margin-top: 5px;
+        display: block;
+        font-weight: 500;
+    }
+
+    /* Buton Stilleri */
+    .btn {
+        padding: 12px 25px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border-radius: 8px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-default {
+        background: linear-gradient(45deg, #2ecc71, #27ae60);
+        border: none;
+        color: white;
+    }
+
+    .btn-default:hover {
+        background: linear-gradient(45deg, #27ae60, #219a52);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+    }
+
+    .btn-default:active {
+        transform: translateY(0);
+    }
+
+    /* Geri Dön Linki Stili */
+    .back-link {
+        display: inline-block;
+        margin-top: 1.5rem;
+        color: #3498db;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .back-link:hover {
+        color: #2980b9;
+        transform: translateX(-5px);
+    }
+
+    .back-link:before {
+        content: '←';
+        margin-right: 5px;
+        transition: transform 0.3s ease;
+    }
+
+    .back-link:hover:before {
+        transform: translateX(-5px);
+    }
+
+    /* Responsive Tasarım */
+    @@media (max-width: 768px) {
+        .form-horizontal {
+            width: 100%;
+            padding: 1.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+        }
+
+        h4 {
+            font-size: 1.5rem;
+        }
+
+        .btn {
+            width: 100%;
+        }
+    }
+
+    /* Input Focus Efekti */
+    .form-control:focus + .focus-border {
+        width: 100%;
+        transition: 0.4s;
+    }
+
+    .focus-border {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: #3498db;
+        transition: 0.4s;
+    }
+
+    /* Form Validation Stilleri */
+    .input-validation-error {
+        border-color: #e74c3c;
+    }
+
+    .field-validation-error {
+        color: #e74c3c;
+        font-size: 0.9rem;
+        margin-top: 5px;
+        display: block;
+    }
+
+    /* Loading Efekti */
+    .btn-loading {
+        position: relative;
+        pointer-events: none;
+    }
+
+    .btn-loading:after {
+        content: '';
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        top: 50%;
+        left: 50%;
+        margin-top: -8px;
+        margin-left: -8px;
+        border: 2px solid rgba(255,255,255,0.3);
+        border-radius: 50%;
+        border-top-color: #fff;
+        animation: spin 1s ease-in-out infinite;
+    }
+
+    @@keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+</style>

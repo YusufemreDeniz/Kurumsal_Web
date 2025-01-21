@@ -104,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\AdminLayout\assets\css\style.css" />
+    <Content Include="Content\AdminLayout\assets\css\Yeni Metin Belgesi.css" />
     <Content Include="Content\AdminLayout\assets\img\apple-touch-icon.png" />
     <Content Include="Content\AdminLayout\assets\img\card.jpg" />
     <Content Include="Content\AdminLayout\assets\img\favicon.png" />
@@ -1505,6 +1506,9 @@
     <Content Include="Views\Yorum\Edit.cshtml" />
     <Content Include="Views\Yorum\Index.cshtml" />
     <Content Include="Views\Home\KategoriBlog.cshtml" />
+    <Content Include="Views\Admin\Adminler.cshtml" />
+    <Content Include="Views\Admin\Create.cshtml" />
+    <Content Include="Views\Admin\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

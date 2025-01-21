@@ -14,7 +14,7 @@
                     AdminId = c.Int(nullable: false, identity: true),
                     Eposta = c.String(nullable: false, maxLength: 50),
                     Sifre = c.String(nullable: false, maxLength: 50),
-                    Yetki = c.Int(nullable: false),
+                    Yetki = c.String(nullable: false, maxLength: 50),
                 })
                 .PrimaryKey(t => t.AdminId);
 

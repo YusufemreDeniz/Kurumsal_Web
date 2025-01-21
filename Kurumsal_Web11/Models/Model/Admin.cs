@@ -16,6 +16,6 @@ namespace Kurumsal_Web11.Models.Model
         public string Eposta { get; set; }
         [Required, StringLength(50, ErrorMessage ="50 Karakter Olmalıdır!!")]
         public string Sifre { get; set; }
-        public int Yetki { get; set; }
+        public string Yetki { get; set; }
     }
 }
