@@ -125,7 +125,7 @@
         border: 2px solid #007bff;
         transition: all 0.3s ease;
         margin-bottom: 30px; /* Alt boşluk */
-        margin-top:10px;
+        margin-top: 10px;
     }
 
         .nav-heading:hover {
@@ -166,7 +166,9 @@
         margin-left: 10px; /* Resim ile arasına boşluk ekle */
     }
 </style>
-
+<div id="services-container" class="services-container">
+    <!-- API'den çekilen hizmetler burada görüntülenecek -->
+</div>
 <div class="container">
     <div class="row">
         <div class="nav-heading-container">
@@ -241,6 +243,27 @@
             currentIndex = $(this).closest('li').index(); // Tıklanan resmin indeksini al
             showImageModal(currentIndex);
         });
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // API'den veri çekme
+        fetch('https://api.football-data.org/v4/matches')
+            .then(response => response.json())
+            .then(data => {
+                // Verileri HTML'de uygun yerlere yerleştirme
+                const servicesContainer = document.getElementById('services-container');
+                data.services.forEach(service => {
+                    const serviceElement = document.createElement('div');
+                    serviceElement.className = 'service-item';
+                    serviceElement.innerHTML = `
+                        <h3>${service.name}</h3>
+                        <p>${service.description}</p>
+                    `;
+                    servicesContainer.appendChild(serviceElement);
+                });
+            })
+            .catch(error => console.error('API hatası:', error));
     });
 </script>
 

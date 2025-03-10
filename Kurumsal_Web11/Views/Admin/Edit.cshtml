@@ -5,51 +5,279 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+<style>
+    .form-container {
+        max-width: 600px;
+        margin: 30px auto;
+        padding: 25px;
+        background-color: #ffffff;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
 
-<h2>Güncelle</h2>
+    .form-title {
+        color: #2c3e50;
+        font-size: 24px;
+        text-align: center;
+        margin-bottom: 30px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #3498db;
+    }
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+    .form-subtitle {
+        color: #7f8c8d;
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
 
-    <div class="form-horizontal">
-        <h4>Yönetici Güncelle</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.AdminId)
+    .form-group {
+        margin-bottom: 20px;
+    }
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Eposta, htmlAttributes: new { @class = "control-label" })
-            <div>
-                @Html.EditorFor(model => model.Eposta, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Eposta, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    .control-label {
+        display: block;
+        margin-bottom: 8px;
+        color: #34495e;
+        font-weight: 500;
+    }
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Sifre, htmlAttributes: new { @class = "control-label" })
-            <div>
-                @Html.EditorFor(model => model.Sifre, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
-                @Html.ValidationMessageFor(model => model.Sifre, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #bdc3c7;
+        border-radius: 4px;
+        font-size: 14px;
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Yetki, htmlAttributes: new { @class = "control-label" })
-            <div>
-                @Html.EditorFor(model => model.Yetki, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Yetki, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        .form-control:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+            outline: none;
+        }
 
-        <div class="form-group">
-            <div>
-                <input type="submit" value="Güncelle" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+    .text-danger {
+        color: #e74c3c;
+        font-size: 12px;
+        margin-top: 5px;
+        display: block;
+    }
+
+    .btn-submit {
+        background-color: #2ecc71;
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+        .btn-submit:hover {
+            background-color: #27ae60;
+        }
+
+    .back-link {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        color: #3498db;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+        .back-link:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+
+    /* Responsive tasarım için */
+    @@media (max-width: 768px) {
+        .form-container {
+            margin: 15px;
+            padding: 15px;
+        }
+    }
+    .form-container {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 25px;
+    background-color: #ffffff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
-<div>
-    @Html.ActionLink("Geri Dön", "Index")
+.form-title {
+    color: #2c3e50;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #3498db;
+}
+
+.form-subtitle {
+    color: #7f8c8d;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.control-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #34495e;
+    font-weight: 500;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+}
+
+.form-control:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
+    outline: none;
+    background-color: #ffffff;
+}
+
+.text-danger {
+    color: #e74c3c;
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+}
+
+.btn-submit {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-submit:hover {
+    background-color: #2980b9;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.btn-submit:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #7f8c8d;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: 14px;
+}
+
+.back-link:hover {
+    color: #34495e;
+    text-decoration: underline;
+}
+
+/* Validation özeti için özel stil */
+.validation-summary-errors {
+    background-color: #fff3f3;
+    border: 1px solid #e74c3c;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.validation-summary-errors ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.validation-summary-errors li {
+    color: #e74c3c;
+    font-size: 13px;
+    margin: 5px 0;
+}
+
+/* Responsive tasarım için */
+@@media (max-width: 768px) {
+    .form-container {
+        margin: 15px;
+        padding: 15px;
+    }
+
+    .form-title {
+        font-size: 20px;
+    }
+
+    .form-subtitle {
+        font-size: 16px;
+    }
+}
+</style>
+<div class="form-container">
+    <h2 class="form-title">Yönetici Düzenle</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4 class="form-subtitle">Yönetici Bilgilerini Güncelle</h4>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.AdminId)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Eposta, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.Eposta, new { htmlAttributes = new { @class = "form-control", @placeholder = "E-posta adresini giriniz" } })
+                    @Html.ValidationMessageFor(model => model.Eposta, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Sifre, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.Sifre, new { htmlAttributes = new { @class = "form-control", @type = "password", @placeholder = "Şifre giriniz" } })
+                    @Html.ValidationMessageFor(model => model.Sifre, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Yetki, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.Yetki, new { htmlAttributes = new { @class = "form-control", @placeholder = "Yetki seviyesini giriniz" } })
+                    @Html.ValidationMessageFor(model => model.Yetki, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Güncelle" class="btn-submit" />
+            </div>
+        </div>
+    }
+
+    @Html.ActionLink("Listeye Geri Dön", "Index", null, new { @class = "back-link" })
 </div>

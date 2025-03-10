@@ -5,44 +5,118 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-
-
-<h2>Adminler</h2>
-
-<p>
-    @Html.ActionLink("Yeni Ekle", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Eposta)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Sifre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Yetki)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Eposta)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sifre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Yetki)
-            </td>
-            <td>
-                @Html.ActionLink("Güncelle", "Edit", new { id = item.AdminId }) |
-                @Html.ActionLink("Sil", "Delete", new { id = item.AdminId })
-            </td>
-        </tr>
+<style>
+    .admin-container {
+        padding: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
     }
 
-</table>
+    .admin-title {
+        color: #2c3e50;
+        font-size: 28px;
+        margin-bottom: 25px;
+        border-bottom: 2px solid #3498db;
+        padding-bottom: 10px;
+    }
+
+    .yeni-ekle-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #27ae60;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        transition: background-color 0.3s;
+    }
+
+        .yeni-ekle-btn:hover {
+            background-color: #219a52;
+        }
+
+    .admin-table {
+        width: 100%;
+        border-collapse: collapse;
+        box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+        .admin-table th {
+            background-color: #34495e;
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .admin-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .admin-table tr:hover {
+            background-color: #f5f6fa;
+        }
+
+    .action-links a {
+        padding: 5px 10px;
+        margin: 0 5px;
+        text-decoration: none;
+        border-radius: 3px;
+    }
+
+    .edit-link {
+        color: #3498db;
+    }
+
+    .delete-link {
+        color: #e74c3c;
+    }
+
+    .action-links a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="admin-container">
+    <h2 class="admin-title">Adminler</h2>
+
+    <p>
+        @Html.ActionLink("Yeni Ekle", "Create", null, new { @class = "yeni-ekle-btn" })
+    </p>
+    <table class="admin-table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Eposta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sifre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Yetki)
+            </th>
+            <th>İşlemler</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Eposta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sifre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Yetki)
+                </td>
+                <td class="action-links">
+                    @Html.ActionLink("Güncelle", "Edit", new { id = item.AdminId }, new { @class = "edit-link" }) |
+                    @Html.ActionLink("Sil", "Delete", new { id = item.AdminId }, new { @class = "delete-link" })
+                </td>
+            </tr>
+        }
+    </table>
+</div>

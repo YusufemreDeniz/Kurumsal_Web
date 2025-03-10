@@ -50,6 +50,38 @@ namespace Kurumsal_Web11.Controllers
             Session.Abandon();
             return RedirectToAction("Login", "Admin");
         }
+        public ActionResult RememberMe()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult RememberMe(string eposta)
+        {
+            var mail = db.Admin.Where(x => x.Eposta == eposta).SingleOrDefault();
+            if (mail != null)
+            {
+                Random rnd = new Random();
+                int yenisifre = rnd.Next();
+
+                Admin admin = new Admin();
+                mail.Sifre = Crypto.Hash(Convert.ToString(yenisifre), "MD5");
+                db.SaveChanges();
+
+                WebMail.SmtpServer = "smtp.gmail.com";
+                WebMail.UserName = "kurumsal.web11@gmail.com";
+                WebMail.Password = "jakq dnsc zeli trya"; // Gmail şifreniz veya uygulama şifresi
+                WebMail.EnableSsl = true; // Güvenli bağlantıyı etkinleştirin
+                WebMail.SmtpPort = 587; // Standart TLS portunu kullanın
+                WebMail.Send(eposta, "Admin Panel Giriş Şifreniz", "Şifreniz :" + yenisifre);
+                ViewBag.Uyari = "Şifreniz Başarı ile gönderilmiştir";
+            }
+            else
+            {
+                ViewBag.Uyari = "Hata Oluştu.Tekrar deneyiniz";
+            }
+            return View();
+        }
+
         public ActionResult Adminler()
         {
             return View(db.Admin.ToList());
@@ -76,7 +108,7 @@ namespace Kurumsal_Web11.Controllers
             return View(a);
         }
         [HttpPost]
-        public ActionResult Edit(int id, Admin admin,string sifre,string eposta)
+        public ActionResult Edit(int id, Admin admin, string sifre, string eposta)
         {
             if (ModelState.IsValid)
             {
@@ -92,7 +124,7 @@ namespace Kurumsal_Web11.Controllers
         public ActionResult Delete(int id)
         {
             var a = db.Admin.Where(x => x.AdminId == id).SingleOrDefault();
-            if (a!=null)
+            if (a != null)
             {
                 db.Admin.Remove(a);
                 db.SaveChanges();

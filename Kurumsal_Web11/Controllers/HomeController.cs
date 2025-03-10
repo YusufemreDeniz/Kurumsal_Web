@@ -60,7 +60,7 @@ namespace Kurumsal_Web11.Controllers
             {
                 WebMail.SmtpServer = "smtp.gmail.com";
                 WebMail.UserName = "kurumsal.web11@gmail.com";
-                WebMail.Password = "aqou qgan mzvt vztp"; // Gmail şifreniz veya uygulama şifresi
+                WebMail.Password = "jakq dnsc zeli trya"; // Gmail şifreniz veya uygulama şifresi
                 WebMail.EnableSsl = true; // Güvenli bağlantıyı etkinleştirin
                 WebMail.SmtpPort = 587; // Standart TLS portunu kullanın
                 WebMail.Send("kurumsal.web11@gmail.com ", konu, email + "-" + mesaj);

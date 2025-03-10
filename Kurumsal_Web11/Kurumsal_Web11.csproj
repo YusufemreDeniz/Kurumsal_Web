@@ -1408,7 +1408,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
-    <Compile Include="Controllers\DenemeController.cs" />
     <Compile Include="Controllers\HakkimizdaController.cs" />
     <Compile Include="Controllers\HizmetController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -1469,7 +1468,6 @@
     <Content Include="Views\Kimlik\Edit.cshtml" />
     <Content Include="Views\Hakkimizda\Index.cshtml" />
     <Content Include="Views\Hakkimizda\Edit.cshtml" />
-    <Content Include="Views\Deneme\Index.cshtml" />
     <Content Include="Views\Iletisim\Create.cshtml" />
     <Content Include="Views\Iletisim\Delete.cshtml" />
     <Content Include="Views\Iletisim\Details.cshtml" />
@@ -1509,6 +1507,7 @@
     <Content Include="Views\Admin\Adminler.cshtml" />
     <Content Include="Views\Admin\Create.cshtml" />
     <Content Include="Views\Admin\Edit.cshtml" />
+    <Content Include="Views\Admin\RememberMe.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
